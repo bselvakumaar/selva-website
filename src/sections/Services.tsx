@@ -172,17 +172,17 @@ export default function Services() {
           alt="Team collaboration"
           className="w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-navy via-navy/95 to-navy/80" />
-        <div className="absolute inset-0 grid-overlay opacity-30" />
+        <div className="absolute inset-0 bg-gradient-to-r from-prof-bg via-prof-bg/95 to-prof-bg/80" />
+        <div className="absolute inset-0 grid-bg opacity-30" />
       </div>
 
       <div className="relative w-full px-6 lg:px-12 xl:px-20">
         {/* Header */}
         <div ref={headerRef} className="mb-16">
-          <p className="font-mono text-xs tracking-[0.12em] text-cyan mb-4 uppercase">
+          <p className="font-mono text-xs tracking-[0.12em] text-prof-blue mb-4 uppercase">
             What I Offer
           </p>
-          <h2 className="font-heading font-bold text-3xl lg:text-5xl text-white mb-4">
+          <h2 className="font-heading font-bold text-3xl lg:text-5xl text-prof-text mb-4">
             Fractional CTO & Platform Development
           </h2>
           <p className="text-muted-foreground max-w-2xl">
@@ -207,11 +207,11 @@ export default function Services() {
                 <div
                   className={`w-12 h-12 rounded-xl bg-gradient-to-br ${service.color} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300`}
                 >
-                  <Icon className="h-6 w-6 text-white" />
+                  <Icon className="h-6 w-6 text-prof-text" />
                 </div>
 
                 {/* Content */}
-                <h3 className="font-heading font-bold text-xl text-white mb-2">
+                <h3 className="font-heading font-bold text-xl text-prof-text mb-2">
                   {service.title}
                 </h3>
                 <p className="text-sm text-muted-foreground mb-4">
@@ -223,9 +223,9 @@ export default function Services() {
                   {service.features.map((feature) => (
                     <li
                       key={feature}
-                      className="text-sm flex items-center gap-2 text-muted-foreground"
+                      className="text-sm flex items-center gap-2 text-prof-text-dim"
                     >
-                      <span className="w-1 h-1 rounded-full bg-cyan flex-shrink-0" />
+                      <span className="w-1 h-1 rounded-full bg-prof-blue flex-shrink-0" />
                       {feature}
                     </li>
                   ))}
@@ -238,9 +238,9 @@ export default function Services() {
         {/* Tech Capabilities */}
         <div
           ref={capabilitiesRef}
-          className="glass-panel rounded-2xl p-6"
+          className="prof-card rounded-2xl p-6"
         >
-          <p className="font-mono text-xs tracking-[0.12em] text-cyan mb-4 uppercase">
+          <p className="font-mono text-xs tracking-[0.12em] text-prof-blue mb-4 uppercase">
             Core Capabilities
           </p>
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
@@ -249,10 +249,10 @@ export default function Services() {
               return (
                 <div
                   key={cap.label}
-                  className="flex items-center gap-3 p-3 bg-white/5 rounded-lg"
+                  className="flex items-center gap-3 p-3 bg-prof-bg-secondary/50 rounded-lg"
                 >
-                  <Icon className="h-5 w-5 text-cyan" />
-                  <span className="text-sm text-white">{cap.label}</span>
+                  <Icon className="h-5 w-5 text-prof-blue" />
+                  <span className="text-sm text-prof-text">{cap.label}</span>
                 </div>
               );
             })}
@@ -263,7 +263,7 @@ export default function Services() {
         <div className="mt-12 text-center">
           <Button
             onClick={scrollToContact}
-            className="bg-cyan text-navy hover:bg-cyan-400 font-semibold px-8 py-6 text-base group"
+            className="bg-prof-blue text-white hover:bg-prof-blue/90 font-semibold px-8 py-6 text-base group"
           >
             Discuss Your Project
             <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />

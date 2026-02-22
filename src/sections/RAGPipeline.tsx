@@ -174,7 +174,7 @@ export default function RAGPipeline() {
               return (
                 <div
                   key={step.id}
-                  className={`rag-step gh-card p-4 transition-all cursor-pointer ${
+                  className={`rag-step prof-card p-4 transition-all cursor-pointer ${
                     isActive ? 'border-gh-purple bg-gh-purple/5' : ''
                   }`}
                   onClick={() => setActiveStep(index)}
@@ -216,7 +216,7 @@ export default function RAGPipeline() {
           {/* Right: Visualization */}
           <div className="space-y-6">
             {/* Vector Search Visualization */}
-            <div className="gh-card p-6">
+            <div className="prof-card p-6">
               <h3 className="font-mono font-semibold text-lg text-gh-text mb-4 flex items-center gap-2">
                 <Search className="h-5 w-5 text-gh-green" />
                 Vector Search Results
@@ -267,7 +267,7 @@ export default function RAGPipeline() {
             </div>
 
             {/* Performance Metrics */}
-            <div className="gh-card p-6">
+            <div className="prof-card p-6">
               <h3 className="font-mono font-semibold text-lg text-gh-text mb-4">
                 Pipeline Performance
               </h3>
@@ -301,7 +301,7 @@ export default function RAGPipeline() {
             </div>
 
             {/* Tech Stack */}
-            <div className="gh-card p-6">
+            <div className="prof-card p-6">
               <h3 className="font-mono font-semibold text-lg text-gh-text mb-4">
                 RAG Stack
               </h3>

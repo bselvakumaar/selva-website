@@ -116,7 +116,7 @@ export default function About() {
             return (
               <div
                 key={stat.label}
-                className="gh-card p-6 text-center"
+                className="prof-card p-6 text-center"
               >
                 <Icon className="h-6 w-6 text-gh-blue mx-auto mb-3" />
                 <p className="font-mono font-bold text-3xl text-gh-text mb-1">
@@ -140,7 +140,7 @@ export default function About() {
               return (
                 <div
                   key={principle.title}
-                  className="gh-card p-4 flex items-start gap-4"
+                  className="prof-card p-4 flex items-start gap-4"
                 >
                   <div className="w-10 h-10 bg-gh-blue/10 rounded-lg flex items-center justify-center flex-shrink-0">
                     <Icon className="h-5 w-5 text-gh-blue" />
@@ -163,7 +163,7 @@ export default function About() {
             <h3 className="font-mono font-semibold text-xl text-gh-text mb-6">
               Technology Stack
             </h3>
-            <div className="gh-card p-6 space-y-4">
+            <div className="prof-card p-6 space-y-4">
               {techStack.map((category) => (
                 <div key={category.category}>
                   <p className="text-xs text-gh-text-secondary font-mono uppercase mb-2">
@@ -184,7 +184,7 @@ export default function About() {
             </div>
 
             {/* Current Focus */}
-            <div className="mt-6 gh-card p-6">
+            <div className="mt-6 prof-card p-6">
               <h4 className="font-mono font-semibold text-gh-text mb-4">
                 Current Focus
               </h4>

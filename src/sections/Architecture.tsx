@@ -150,7 +150,7 @@ export default function Architecture() {
             GenAI Request Flow
           </h3>
 
-          <div className="gh-card p-6 lg:p-8 overflow-x-auto">
+          <div className="prof-card p-6 lg:p-8 overflow-x-auto">
             <div className="flex flex-col lg:flex-row items-center gap-4 min-w-max">
               {genaiFlowSteps.map((step, index) => {
                 const Icon = step.icon;
@@ -211,7 +211,7 @@ export default function Architecture() {
 
           <div className="grid lg:grid-cols-2 gap-8">
             {/* Layer Stack */}
-            <div className="gh-card p-6">
+            <div className="prof-card p-6">
               <p className="text-xs text-gh-text-secondary font-mono mb-4 uppercase tracking-wider">
                 Tenant Isolation Layers
               </p>
@@ -250,7 +250,7 @@ export default function Architecture() {
             </div>
 
             {/* Tenant Database Visualization */}
-            <div className="gh-card p-6">
+            <div className="prof-card p-6">
               <p className="text-xs text-gh-text-secondary font-mono mb-4 uppercase tracking-wider">
                 Tenant Database Isolation
               </p>
@@ -321,7 +321,7 @@ export default function Architecture() {
           ].map((metric) => {
             const Icon = metric.icon;
             return (
-              <div key={metric.label} className="gh-card p-4 text-center">
+              <div key={metric.label} className="prof-card p-4 text-center">
                 <Icon className="h-5 w-5 text-gh-blue mx-auto mb-2" />
                 <p className="font-mono font-bold text-gh-text">{metric.value}</p>
                 <p className="text-xs text-gh-text-secondary">{metric.label}</p>

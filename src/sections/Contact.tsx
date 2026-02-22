@@ -137,7 +137,7 @@ export default function Contact() {
           </div>
 
           {/* Right: Form */}
-          <div className="gh-card p-6 lg:p-8">
+          <div className="prof-card p-6 lg:p-8">
             {submitted ? (
               <div className="text-center py-8">
                 <div className="w-16 h-16 bg-gh-green/20 rounded-full flex items-center justify-center mx-auto mb-4">

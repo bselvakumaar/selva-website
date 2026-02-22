@@ -29,18 +29,37 @@
 
     /* Premium Professional Colors */
     --prof-bg: #030712;
+    --prof-bg-rgb: 3 7 18;
     --prof-bg-secondary: #0F172A;
+    --prof-bg-secondary-rgb: 15 23 42;
     --prof-bg-tertiary: #1E293B;
+    --prof-bg-tertiary-rgb: 30 41 59;
     --prof-border: #334155;
+    --prof-border-rgb: 51 65 85;
     --prof-blue: #3B82F6;
+    --prof-blue-rgb: 59 130 246;
     --prof-indigo: #6366F1;
+    --prof-indigo-rgb: 99 102 241;
     --prof-emerald: #10B981;
+    --prof-emerald-rgb: 16 185 129;
     --prof-slate: #94A3B8;
+    --prof-slate-rgb: 148 163 184;
     --prof-text: #F8FAFC;
+    --prof-text-rgb: 248 250 252;
     --prof-text-dim: #94A3B8;
+    --prof-text-dim-rgb: 148 163 184;
     --prof-blue-glow: rgba(59, 130, 246, 0.5);
     --prof-glass-bg: rgba(15, 23, 42, 0.5);
     --prof-glass-border: rgba(51, 65, 85, 0.5);
+    /* Adding GH compatibility variables for professional dark */
+    --gh-purple: #8957e5;
+    --gh-purple-rgb: 137 87 229;
+    --gh-orange: #d7660f;
+    --gh-orange-rgb: 215 102 15;
+    --gh-red: #f85149;
+    --gh-red-rgb: 248 81 73;
+    --gh-yellow: #f1e05a;
+    --gh-yellow-rgb: 241 224 90;
   }
 
   .light {
@@ -64,18 +83,37 @@
     --radius: 0.75rem;
 
     --prof-bg: #F8FAFC;
+    --prof-bg-rgb: 248 250 252;
     --prof-bg-secondary: #F1F5F9;
+    --prof-bg-secondary-rgb: 241 245 249;
     --prof-bg-tertiary: #E2E8F0;
+    --prof-bg-tertiary-rgb: 226 232 240;
     --prof-border: #CBD5E1;
+    --prof-border-rgb: 203 213 225;
     --prof-blue: #2563EB;
+    --prof-blue-rgb: 37 99 235;
     --prof-indigo: #4F46E5;
+    --prof-indigo-rgb: 79 70 229;
     --prof-emerald: #059669;
+    --prof-emerald-rgb: 5 150 105;
     --prof-slate: #64748B;
+    --prof-slate-rgb: 100 116 139;
     --prof-text: #0F172A;
+    --prof-text-rgb: 15 23 42;
     --prof-text-dim: #475569;
+    --prof-text-dim-rgb: 71 85 105;
     --prof-blue-glow: rgba(37, 99, 235, 0.2);
     --prof-glass-bg: rgba(255, 255, 255, 0.7);
     --prof-glass-border: rgba(203, 213, 225, 0.5);
+    /* Adding GH compatibility variables for professional light */
+    --gh-purple: #7c3aed;
+    --gh-purple-rgb: 124 58 237;
+    --gh-orange: #ea580c;
+    --gh-orange-rgb: 234 88 12;
+    --gh-red: #dc2626;
+    --gh-red-rgb: 220 38 38;
+    --gh-yellow: #ca8a04;
+    --gh-yellow-rgb: 202 138 4;
   }
 }
 

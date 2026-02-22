@@ -49,7 +49,7 @@ export default function Navigation() {
               className="flex items-center gap-3 group"
             >
               <div className="w-8 h-8 bg-prof-blue rounded-lg flex items-center justify-center shadow-lg shadow-prof-blue/20 group-hover:scale-110 transition-transform">
-                <Terminal className="h-4 w-4 text-white" />
+                <Terminal className="h-4 w-4 text-prof-blue" />
               </div>
               <div className="flex flex-col">
                 <span className="font-bold text-prof-text leading-none tracking-tight">Selvakumar</span>

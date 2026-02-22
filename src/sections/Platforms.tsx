@@ -191,7 +191,7 @@ function PlatformCard({ platform }: { platform: Platform }) {
   const status = statusConfig[platform.status];
 
   return (
-    <div className="gh-card p-5 hover:border-gh-blue/50 transition-all duration-300">
+    <div className="prof-card p-5 hover:border-gh-blue/50 transition-all duration-300">
       {/* Header */}
       <div className="flex items-start justify-between mb-4">
         <div className="flex items-center gap-3">
@@ -376,7 +376,7 @@ export default function Platforms() {
         </div>
 
         {/* Bottom Stats */}
-        <div className="mt-12 gh-card p-6">
+        <div className="mt-12 prof-card p-6">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 text-center">
             <div>
               <Database className="h-5 w-5 text-gh-blue mx-auto mb-2" />

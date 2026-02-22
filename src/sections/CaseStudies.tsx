@@ -126,7 +126,7 @@ export default function CaseStudies() {
         {/* Case Study Content */}
         <div className="space-y-6">
           {/* Client Overview */}
-          <div className="case-card gh-card p-6">
+          <div className="case-card prof-card p-6">
             <div className="flex flex-col lg:flex-row gap-6">
               {/* Client Info */}
               <div className="flex-1">
@@ -159,7 +159,7 @@ export default function CaseStudies() {
                   return (
                     <div
                       key={stat.label}
-                      className="gh-card p-3 text-center"
+                      className="prof-card p-3 text-center"
                     >
                       <Icon className="h-4 w-4 text-gh-blue mx-auto mb-2" />
                       <p className="font-mono font-bold text-gh-text">{stat.value}</p>
@@ -174,7 +174,7 @@ export default function CaseStudies() {
           {/* Problems & Solutions Grid */}
           <div className="grid lg:grid-cols-2 gap-6">
             {/* Problems */}
-            <div className="case-card gh-card p-6">
+            <div className="case-card prof-card p-6">
               <h4 className="font-mono font-semibold text-lg text-gh-text mb-4 flex items-center gap-2">
                 <Shield className="h-5 w-5 text-gh-red" />
                 The Challenge
@@ -195,7 +195,7 @@ export default function CaseStudies() {
             </div>
 
             {/* Solutions */}
-            <div className="case-card gh-card p-6">
+            <div className="case-card prof-card p-6">
               <h4 className="font-mono font-semibold text-lg text-gh-text mb-4 flex items-center gap-2">
                 <Cpu className="h-5 w-5 text-gh-green" />
                 The Solution
@@ -221,7 +221,7 @@ export default function CaseStudies() {
           </div>
 
           {/* Results */}
-          <div className="case-card gh-card p-6">
+          <div className="case-card prof-card p-6">
             <h4 className="font-mono font-semibold text-lg text-gh-text mb-4">
               Results & Impact
             </h4>
@@ -241,7 +241,7 @@ export default function CaseStudies() {
           </div>
 
           {/* Testimonial */}
-          <div className="case-card gh-card p-6 border-gh-blue/30">
+          <div className="case-card prof-card p-6 border-gh-blue/30">
             <div className="flex flex-col lg:flex-row gap-6 items-start">
               <Quote className="h-8 w-8 text-gh-blue/50 flex-shrink-0" />
               <div className="flex-1">

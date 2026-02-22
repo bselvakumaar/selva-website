@@ -188,7 +188,7 @@ export default function Hero() {
             {/* Technical Context Card */}
             <div className="mt-8 prof-card p-[1px] bg-gradient-to-br from-prof-border/50 to-prof-bg-tertiary/50">
               <div className="bg-prof-bg rounded-[11px] overflow-hidden">
-                <div className="px-5 py-3 bg-prof-bg-secondary/50 flex justify-between items-center">
+                <div className="px-5 py-3 bg-prof-bg-secondary/50 flex justify-between items-center border-b border-prof-border">
                   <span className="text-[10px] text-prof-slate font-bold tracking-widest">ARCHITECTURE.YAML</span>
                   <div className="flex gap-1.5">
                     <div className="w-1.5 h-1.5 rounded-full bg-prof-blue/30" />
