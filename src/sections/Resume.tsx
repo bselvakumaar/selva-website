@@ -75,7 +75,7 @@ export default function Resume() {
                     <div className="flex flex-col md:flex-row justify-between items-start gap-6 border-b border-prof-border pb-8 mb-8 print:border-black">
                         <div>
                             <h1 className="text-4xl font-extrabold text-prof-text mb-2 print:text-black">Selvakumar Balakrishnan</h1>
-                            <p className="text-xl text-prof-blue font-mono font-semibold print:text-black">Senior AI/ML Architect & System Engineer</p>
+                            <p className="text-xl text-prof-blue font-mono font-semibold print:text-black">AI/ML Solution Architect / Manager</p>
                         </div>
                         <div className="space-y-2 text-sm text-prof-slate print:text-black">
                             <div className="flex items-center gap-2">
