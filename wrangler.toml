@@ -1,3 +1,6 @@
 name = "site"
-pages_build_output_dir = "./dist"
+main = "src/worker.js"
 compatibility_date = "2026-02-22"
+
+[assets]
+directory = "./dist"
