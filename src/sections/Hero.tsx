@@ -98,9 +98,8 @@ export default function Hero() {
                   Balakrishnan
                 </span>
               </h1>
-              <p className="text-xl text-prof-slate max-w-xl leading-relaxed">
-                Pioneering <span className="text-prof-text font-medium">Enterprise AI Systems</span> with 25+ years of architectural excellence.
-                Specializing in high-scale GenAI platforms and multi-tenant SaaS.
+              <p className="text-xl md:text-2xl text-prof-blue font-mono font-bold tracking-tight">
+                AI/ML Solution Architect / Manager
               </p>
             </div>
 
