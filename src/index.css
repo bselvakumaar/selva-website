@@ -1,0 +1,264 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 222 47% 4%;
+    --foreground: 210 40% 98%;
+    --card: 222 47% 6%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222 47% 4%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 217 91% 60%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 217 19% 27%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217 19% 27%;
+    --muted-foreground: 215 20% 65%;
+    --accent: 160 81% 43%;
+    --accent-foreground: 222 47% 4%;
+    --destructive: 0 63% 31%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217 19% 27%;
+    --input: 217 19% 27%;
+    --ring: 224.3 76.3% 48%;
+    --radius: 0.75rem;
+
+    /* Premium Professional Colors */
+    --prof-bg: #030712;
+    --prof-bg-secondary: #0F172A;
+    --prof-bg-tertiary: #1E293B;
+    --prof-border: #334155;
+    --prof-blue: #3B82F6;
+    --prof-indigo: #6366F1;
+    --prof-emerald: #10B981;
+    --prof-slate: #94A3B8;
+    --prof-text: #F8FAFC;
+    --prof-text-dim: #94A3B8;
+    --prof-blue-glow: rgba(59, 130, 246, 0.5);
+    --prof-glass-bg: rgba(15, 23, 42, 0.5);
+    --prof-glass-border: rgba(51, 65, 85, 0.5);
+  }
+
+  .light {
+    --background: 210 40% 98%;
+    --foreground: 222 47% 4%;
+    --card: 210 40% 98%;
+    --card-foreground: 222 47% 4%;
+    --popover: 210 40% 98%;
+    --popover-foreground: 222 47% 4%;
+    --primary: 217 91% 60%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 90%;
+    --secondary-foreground: 222 47% 4%;
+    --muted: 210 40% 90%;
+    --muted-foreground: 215 20% 65%;
+    --accent: 160 81% 43%;
+    --accent-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 221.2 83.2% 53.3%;
+    --radius: 0.75rem;
+
+    --prof-bg: #F8FAFC;
+    --prof-bg-secondary: #F1F5F9;
+    --prof-bg-tertiary: #E2E8F0;
+    --prof-border: #CBD5E1;
+    --prof-blue: #2563EB;
+    --prof-indigo: #4F46E5;
+    --prof-emerald: #059669;
+    --prof-slate: #64748B;
+    --prof-text: #0F172A;
+    --prof-text-dim: #475569;
+    --prof-blue-glow: rgba(37, 99, 235, 0.2);
+    --prof-glass-bg: rgba(255, 255, 255, 0.7);
+    --prof-glass-border: rgba(203, 213, 225, 0.5);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-prof-bg text-prof-text antialiased;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-bold tracking-tight;
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+
+  code,
+  pre,
+  .font-mono {
+    font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  }
+}
+
+@layer components {
+
+  /* Sophisticated Glassmorphism & Containers */
+  .prof-card {
+    @apply backdrop-blur-md rounded-xl;
+    background-color: var(--prof-glass-bg);
+    border: 1px solid var(--prof-glass-border);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .prof-card:hover {
+    @apply border-prof-blue -translate-y-1 shadow-2xl;
+  }
+
+  /* Terminal Aesthetic (Refined) */
+  .terminal {
+    @apply bg-prof-bg border border-prof-border rounded-xl overflow-hidden;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+  }
+
+  .terminal-header {
+    @apply flex items-center gap-2 px-5 py-3 bg-prof-bg-secondary border-b border-prof-border;
+  }
+
+  .terminal-dot {
+    @apply w-3 h-3 rounded-full opacity-80;
+  }
+
+  .terminal-dot-red {
+    @apply bg-rose-500;
+  }
+
+  .terminal-dot-yellow {
+    @apply bg-amber-500;
+  }
+
+  .terminal-dot-green {
+    @apply bg-emerald-500;
+  }
+
+  .terminal-body {
+    @apply p-6 font-mono text-sm leading-relaxed;
+  }
+
+  .terminal-prompt {
+    @apply text-prof-emerald font-bold mr-2;
+  }
+
+  .terminal-command {
+    @apply text-prof-text;
+  }
+
+  .terminal-output {
+    @apply text-prof-text-dim block mt-1 mb-4 last:mb-0 pl-4 border-l border-prof-border;
+  }
+
+  /* Modern Code Blocks */
+  .code-block {
+    @apply bg-prof-bg border border-prof-border rounded-xl overflow-hidden mt-6;
+  }
+
+  .code-header {
+    @apply flex items-center justify-between px-5 py-2.5 bg-prof-bg-secondary border-b border-prof-border;
+  }
+
+  .code-lang {
+    @apply text-[10px] text-prof-slate font-bold tracking-widest uppercase;
+  }
+
+  /* Status Badges */
+  .badge {
+    @apply inline-flex items-center gap-1.5 px-3 py-1 text-[10px] font-bold tracking-wider uppercase rounded-full;
+  }
+
+  .badge-live {
+    @apply bg-emerald-500/10 text-emerald-400 border border-emerald-500/10;
+  }
+
+  .badge-beta {
+    @apply bg-amber-500/10 text-amber-400 border border-amber-500/10;
+  }
+
+  .badge-wip {
+    @apply bg-prof-blue/10 text-prof-blue border border-prof-blue/10;
+  }
+
+  /* Diagram Visuals */
+  .diagram-node {
+    @apply bg-prof-bg-secondary/80 backdrop-blur-sm border border-prof-border rounded-lg px-6 py-4 text-center;
+    transition: all 0.4s ease;
+  }
+
+  .diagram-node:hover {
+    @apply border-prof-blue bg-prof-blue;
+  }
+
+  /* Refined Grid & Visual Ornaments */
+  .grid-bg {
+    background-image:
+      radial-gradient(circle at 1px 1px, var(--prof-border) 1px, transparent 0);
+    background-size: 24px 24px;
+  }
+
+  .glow-wash {
+    @apply absolute pointer-events-none;
+    background: radial-gradient(circle at center, var(--prof-blue-glow), transparent 70%);
+    opacity: 0.15;
+    filter: blur(80px);
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--prof-bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--prof-border);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--prof-slate);
+}
+
+/* Selection */
+::selection {
+  @apply bg-prof-blue/20 text-white;
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
