@@ -11,6 +11,7 @@ import Architecture from './sections/Architecture';
 import RAGPipeline from './sections/RAGPipeline';
 import CaseStudies from './sections/CaseStudies';
 import About from './sections/About';
+import Resume from './sections/Resume';
 import Contact from './sections/Contact';
 import Footer from './sections/Footer';
 
@@ -30,7 +31,7 @@ function App() {
     <div className="relative min-h-screen bg-gh-bg">
       {/* Navigation */}
       <Navigation />
-      
+
       {/* Main content */}
       <main className="relative">
         <Hero />
@@ -39,9 +40,10 @@ function App() {
         <RAGPipeline />
         <CaseStudies />
         <About />
+        <Resume />
         <Contact />
       </main>
-      
+
       {/* Footer */}
       <Footer />
     </div>

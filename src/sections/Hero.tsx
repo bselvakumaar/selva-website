@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { ArrowRight, Terminal, Cpu, Database, Globe, Clock } from 'lucide-react';
+import { ArrowRight, Terminal, Cpu, Database, Globe, Clock, FileText } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -115,12 +115,12 @@ export default function Hero() {
                 <ArrowRight className="ml-2.5 h-4 w-4" />
               </Button>
               <Button
-                onClick={() => scrollToSection('#architecture')}
+                onClick={() => scrollToSection('#resume')}
                 variant="outline"
-                className="border-prof-border text-prof-text hover:bg-prof-bg-secondary h-12 px-8 rounded-lg"
+                className="border-prof-border text-prof-text hover:bg-prof-bg-secondary h-12 px-8 rounded-lg flex items-center gap-2"
               >
-                <Cpu className="mr-2.5 h-4 w-4" />
-                System Design
+                <FileText className="mr-2 h-4 w-4" />
+                View Resume
               </Button>
             </div>
 

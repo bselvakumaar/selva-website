@@ -9,6 +9,7 @@ const navLinks = [
   { label: 'RAG Pipeline', href: '#rag-pipeline' },
   { label: 'Case Studies', href: '#case-studies' },
   { label: 'About', href: '#about' },
+  { label: 'Resume', href: '#resume' },
   { label: 'Contact', href: '#contact' },
 ];
 
