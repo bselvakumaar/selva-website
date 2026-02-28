@@ -8,7 +8,6 @@ import {
   MessageSquare,
   Sparkles,
   Activity,
-  Cpu,
   ChevronRight
 } from 'lucide-react';
 
@@ -142,8 +141,8 @@ export default function RAGPipeline() {
                   <div
                     key={step.id}
                     className={`rag-node p-8 rounded-[36px] border transition-all duration-700 flex flex-col items-center text-center ${activeStep === idx
-                        ? 'bg-prof-blue border-prof-blue shadow-[0_0_50px_rgba(29,78,216,0.4)] scale-105'
-                        : 'bg-white/5 border-white/10 opacity-30'
+                      ? 'bg-prof-blue border-prof-blue shadow-[0_0_50px_rgba(29,78,216,0.4)] scale-105'
+                      : 'bg-white/5 border-white/10 opacity-30'
                       }`}
                   >
                     <step.icon size={32} className={activeStep === idx ? 'text-white' : 'text-slate-500'} />
