@@ -9,9 +9,7 @@ import {
   ArrowRight,
   Quote,
   Heart,
-  Database,
-  Cpu,
-  Shield
+  Zap
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
@@ -24,49 +22,10 @@ const stats = [
   { icon: CheckCircle, label: 'Uptime', value: '99.9%' },
 ];
 
-const problems = [
-  {
-    title: 'Inefficient Workflows',
-    description: 'Doctors spent 2+ hours daily on paperwork instead of patient care',
-  },
-  {
-    title: 'No Data Insights',
-    description: 'Unable to identify trends in common illnesses or vaccination schedules',
-  },
-  {
-    title: 'Scalability Concerns',
-    description: 'Opening a second location seemed impossible with current systems',
-  },
-];
-
-const solutions = [
-  {
-    number: '01',
-    title: 'Rapid Data Migration',
-    description: '2,500+ patient records digitized in 5 days using OCR + manual verification hybrid approach',
-  },
-  {
-    number: '02',
-    title: 'AI-Assisted Clinical Workflows',
-    description: 'Integrated RAG-based clinical assistant providing drug interaction checks and pediatric dosage guidelines',
-  },
-  {
-    number: '03',
-    title: 'Multi-Location Ready',
-    description: 'Architecture supports second clinic opening with zero additional infrastructure work',
-  },
-  {
-    number: '04',
-    title: 'Parent Portal',
-    description: 'Secure access for parents to view vaccination schedules, growth charts, and appointment booking',
-  },
-];
-
 const results = [
-  { metric: '40%', label: 'reduction in admin time', description: 'Doctors now spend 25 mins vs 120 mins daily' },
-  { metric: 'Zero', label: 'scheduling conflicts', description: 'Real-time availability prevents double-booking' },
-  { metric: '10x', label: 'faster record retrieval', description: 'Patient history in 30 seconds vs 5-10 minutes' },
-  { metric: '100%', label: 'vaccination compliance', description: 'Automated reminders + stock tracking' },
+  { metric: '40%', label: 'reduction in admin time', description: 'Clinicians save 90+ minutes daily' },
+  { metric: 'Zero', label: 'scheduling conflicts', description: 'Real-time multi-agent orchestration' },
+  { metric: '100%', label: 'compliance score', description: 'Automated PII and HIPAA monitoring' },
 ];
 
 export default function CaseStudies() {
@@ -78,18 +37,17 @@ export default function CaseStudies() {
 
     const ctx = gsap.context(() => {
       gsap.fromTo(
-        '.case-card',
+        '.case-item',
         { y: 40, opacity: 0 },
         {
           y: 0,
           opacity: 1,
-          duration: 0.5,
-          stagger: 0.1,
-          ease: 'power2.out',
+          duration: 0.8,
+          stagger: 0.2,
+          ease: 'power3.out',
           scrollTrigger: {
             trigger: section,
             start: 'top 80%',
-            toggleActions: 'play none none reverse',
           },
         }
       );
@@ -99,185 +57,97 @@ export default function CaseStudies() {
   }, []);
 
   return (
-    <section
-      ref={sectionRef}
-      id="case-studies"
-      className="relative w-full py-24"
-    >
-      <div className="absolute inset-0 grid-bg opacity-30" />
+    <section ref={sectionRef} id="case-studies" className="relative w-full py-20 bg-prof-bg overflow-hidden">
+      <div className="absolute inset-0 blueprint-grid opacity-[0.05] pointer-events-none" />
 
-      <div className="relative w-full px-6 lg:px-12 xl:px-20">
-        {/* Header */}
-        <div className="text-center mb-12">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-gh-bg-tertiary border border-gh-border rounded-full mb-4">
-            <Database className="h-3.5 w-3.5 text-gh-purple" />
-            <span className="text-xs text-gh-text-secondary font-mono">
-              Case Study
-            </span>
+      <div className="relative w-full px-6 lg:px-12 xl:px-24 max-w-[1600px] mx-auto">
+        <div className="text-center mb-20 space-y-4">
+          <div className="inline-flex items-center gap-3 px-4 py-1.5 banana-glass border-slate-200 mx-auto">
+            <Zap className="h-4 w-4 text-prof-indigo" />
+            <span className="text-[10px] text-prof-indigo font-black uppercase tracking-[0.2em]">Impact Analysis</span>
           </div>
-          <h2 className="font-mono font-bold text-3xl lg:text-4xl text-gh-text mb-4">
-            Proven Results
-          </h2>
-          <p className="text-gh-text-secondary max-w-2xl mx-auto">
-            Real-world impact through production-grade GenAI platforms.
+          <h2 className="text-5xl font-black text-[#0F172A]">Real-World <span className="text-gradient">Case Studies</span></h2>
+          <p className="text-xl text-prof-text-dim max-w-2xl mx-auto">
+            Translating complex AI blueprints into measurable enterprise outcomes.
           </p>
         </div>
 
-        {/* Case Study Content */}
-        <div className="space-y-6">
-          {/* Client Overview */}
-          <div className="case-card prof-card p-6">
-            <div className="flex flex-col lg:flex-row gap-6">
-              {/* Client Info */}
-              <div className="flex-1">
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="w-12 h-12 bg-gh-blue/20 rounded-lg flex items-center justify-center">
-                    <Heart className="h-6 w-6 text-gh-blue" />
-                  </div>
-                  <div>
-                    <span className="px-2 py-0.5 bg-gh-blue/20 text-gh-blue text-xs rounded font-mono">
-                      Healthcare
-                    </span>
-                    <h3 className="font-mono font-bold text-xl text-gh-text mt-1">
-                      Kidz-Clinic
-                    </h3>
-                  </div>
-                </div>
-                <p className="text-gh-text-secondary text-sm mb-3">
-                  Pediatric healthcare provider in Hyderabad, India. 3 practicing pediatricians, 
-                  50+ daily patient visits. Previously used paper-based records + Excel.
-                </p>
-                <p className="text-sm text-gh-text-secondary">
-                  <span className="text-gh-blue font-mono">challenge:</span> Scaling without adding administrative overhead
-                </p>
-              </div>
+        <div className="grid lg:grid-cols-12 gap-12">
+          {/* Main Case Card */}
+          <div className="lg:col-span-8 case-item">
+            <div className="banana-glass border-slate-100 p-10 h-full relative overflow-hidden group">
+              <div className="absolute top-0 right-0 w-[50%] h-[50%] bg-prof-indigo/5 blur-[120px] rounded-full group-hover:bg-prof-indigo/10 transition-all duration-700" />
 
-              {/* Stats */}
-              <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
-                {stats.map((stat) => {
-                  const Icon = stat.icon;
-                  return (
-                    <div
-                      key={stat.label}
-                      className="prof-card p-3 text-center"
-                    >
-                      <Icon className="h-4 w-4 text-gh-blue mx-auto mb-2" />
-                      <p className="font-mono font-bold text-gh-text">{stat.value}</p>
-                      <p className="text-xs text-gh-text-secondary">{stat.label}</p>
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
-          </div>
-
-          {/* Problems & Solutions Grid */}
-          <div className="grid lg:grid-cols-2 gap-6">
-            {/* Problems */}
-            <div className="case-card prof-card p-6">
-              <h4 className="font-mono font-semibold text-lg text-gh-text mb-4 flex items-center gap-2">
-                <Shield className="h-5 w-5 text-gh-red" />
-                The Challenge
-              </h4>
-              <div className="space-y-3">
-                {problems.map((problem) => (
-                  <div
-                    key={problem.title}
-                    className="p-3 bg-gh-red/10 border-l-2 border-gh-red/50 rounded-r"
-                  >
-                    <h5 className="font-mono font-semibold text-gh-red text-sm mb-1">
-                      {problem.title}
-                    </h5>
-                    <p className="text-xs text-gh-text-secondary">{problem.description}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Solutions */}
-            <div className="case-card prof-card p-6">
-              <h4 className="font-mono font-semibold text-lg text-gh-text mb-4 flex items-center gap-2">
-                <Cpu className="h-5 w-5 text-gh-green" />
-                The Solution
-              </h4>
-              <div className="space-y-3">
-                {solutions.map((solution) => (
-                  <div key={solution.number} className="flex gap-3">
-                    <div className="w-7 h-7 bg-gh-blue/20 rounded flex items-center justify-center flex-shrink-0">
-                      <span className="font-mono text-xs text-gh-blue font-bold">
-                        {solution.number}
-                      </span>
+              <div className="flex flex-col md:flex-row gap-10">
+                <div className="flex-1 space-y-8">
+                  <div className="flex items-center gap-4">
+                    <div className="w-16 h-16 bg-prof-indigo rounded-[2rem] flex items-center justify-center text-white shadow-xl shadow-prof-indigo/20">
+                      <Heart size={32} />
                     </div>
                     <div>
-                      <h5 className="font-mono font-semibold text-gh-text text-sm mb-0.5">
-                        {solution.title}
-                      </h5>
-                      <p className="text-xs text-gh-text-secondary">{solution.description}</p>
+                      <span className="badge badge-beta mb-2">Healthcare</span>
+                      <h3 className="text-3xl font-black text-prof-text">Kidz-Clinic AI Platform</h3>
                     </div>
                   </div>
-                ))}
-              </div>
-            </div>
-          </div>
 
-          {/* Results */}
-          <div className="case-card prof-card p-6">
-            <h4 className="font-mono font-semibold text-lg text-gh-text mb-4">
-              Results & Impact
-            </h4>
-            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-              {results.map((result) => (
-                <div key={result.label} className="p-4 bg-gh-bg-tertiary rounded border border-gh-border">
-                  <div className="flex items-center gap-2 mb-2">
-                    <span className="bg-gh-green/20 text-gh-green px-2 py-0.5 rounded text-sm font-mono font-bold">
-                      {result.metric}
-                    </span>
+                  <p className="text-lg text-prof-text-dim leading-relaxed">
+                    Redesigning pediatric care workflows in Hyderabad. Integrated an Agentic AI mesh to handle
+                    <span className="text-prof-indigo font-bold"> 2,500+ patient records</span> with automated dosage orchestration
+                    and real-time clinical assistants.
+                  </p>
+
+                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+                    {stats.map(stat => (
+                      <div key={stat.label} className="p-4 bg-prof-bg-secondary border border-prof-border rounded-2xl text-center">
+                        <p className="text-2xl font-black text-prof-indigo">{stat.value}</p>
+                        <p className="text-[10px] text-prof-slate font-bold uppercase tracking-widest mt-1">{stat.label}</p>
+                      </div>
+                    ))}
                   </div>
-                  <p className="font-mono font-semibold text-gh-text text-sm mb-1">{result.label}</p>
-                  <p className="text-xs text-gh-text-secondary">{result.description}</p>
                 </div>
-              ))}
-            </div>
-          </div>
+              </div>
 
-          {/* Testimonial */}
-          <div className="case-card prof-card p-6 border-gh-blue/30">
-            <div className="flex flex-col lg:flex-row gap-6 items-start">
-              <Quote className="h-8 w-8 text-gh-blue/50 flex-shrink-0" />
-              <div className="flex-1">
-                <blockquote className="text-lg text-gh-text italic mb-4 leading-relaxed">
-                  "MedFlow transformed how we operate. I can now see my last patient at 6 PM 
-                  and be home by 6:30 PM instead of 8 PM. The AI assistant caught a drug 
-                  interaction I might have missed—it literally may have saved a child's life."
-                </blockquote>
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 bg-gh-blue/20 rounded-full flex items-center justify-center font-mono font-bold text-gh-blue">
-                    DS
-                  </div>
-                  <div>
-                    <p className="font-mono font-semibold text-gh-text">Dr. Deepa Sharma</p>
-                    <p className="text-sm text-gh-text-secondary">Lead Pediatrician, Kidz-Clinic</p>
+              <div className="mt-12 pt-12 border-t border-prof-border/50">
+                <div className="flex flex-col md:flex-row gap-12 items-start">
+                  <Quote className="h-10 w-10 text-prof-indigo/30 flex-shrink-0" />
+                  <div className="flex-1">
+                    <blockquote className="text-xl text-prof-text italic font-medium leading-[1.6]">
+                      "MedFlow transformed how we operate. The AI assistant caught a drug interaction
+                      I might have missed—it literally may have saved a child's life."
+                    </blockquote>
+                    <div className="mt-6 flex items-center gap-4">
+                      <div className="w-12 h-12 bg-prof-bg-tertiary rounded-2xl flex items-center justify-center font-black text-prof-indigo">DS</div>
+                      <div>
+                        <p className="font-bold text-prof-text">Dr. Deepa Sharma</p>
+                        <p className="text-xs text-prof-slate font-bold uppercase tracking-widest">Lead Pediatrician</p>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* CTA */}
-          <div className="text-center">
-            <Button
-              asChild
-              className="bg-gh-blue text-gh-bg hover:bg-gh-blue/90 font-mono group"
-            >
-              <a
-                href="https://emr-app-0909.onrender.com"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                launch_medflow_demo()
-                <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-              </a>
-            </Button>
+          {/* Side Highlights */}
+          <div className="lg:col-span-4 space-y-8">
+            {results.map((res, i) => (
+              <div key={res.label} className={`case-item p-8 banana-glass border-slate-100 flex flex-col justify-between h-[180px] hover:border-prof-indigo/40 transition-all ${i === 0 ? 'bg-prof-indigo text-white' : ''}`}>
+                <div>
+                  <p className={`text-4xl font-black mb-2 ${i === 0 ? 'text-white' : 'text-prof-indigo'}`}>{res.metric}</p>
+                  <p className={`font-bold uppercase tracking-widest text-xs ${i === 0 ? 'text-white/80' : 'text-prof-text'}`}>{res.label}</p>
+                </div>
+                <p className={`text-sm ${i === 0 ? 'text-white/70' : 'text-prof-text-dim'}`}>{res.description}</p>
+              </div>
+            ))}
+
+            <div className="case-item">
+              <Button asChild className="w-full h-16 bg-prof-blue text-white font-bold rounded-2xl shadow-xl shadow-prof-blue/20 hover:scale-[1.02] transition-all">
+                <a href="https://emr-app-0909.onrender.com" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-lg">
+                  Explore MedFlow Live
+                  <ArrowRight size={22} />
+                </a>
+              </Button>
+            </div>
           </div>
         </div>
       </div>

@@ -1,91 +1,68 @@
 import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { 
-  Search, 
-  Brain, 
-  FileText, 
-  Database, 
+import {
+  Search,
+  Brain,
+  Database,
   MessageSquare,
   Sparkles,
-  Layers
+  Activity,
+  Cpu,
+  ChevronRight
 } from 'lucide-react';
 
 gsap.registerPlugin(ScrollTrigger);
 
-// RAG Pipeline Steps
 const ragSteps = [
   {
     id: 'query',
-    title: 'User Query',
-    description: 'Natural language question from user',
+    title: 'Input Synthesis',
+    description: 'Deconstructing natural language into semantic tokens for multi-agent reasoning.',
     icon: MessageSquare,
-    code: `query = "What are side effects of Amoxicillin?"`,
+    code: `query = "Synthesize pediatric dosage for Amoxicillin based on 22kg body mass."`,
   },
   {
     id: 'embed',
-    title: 'Embedding Generation',
-    description: 'Convert query to vector representation',
+    title: 'Vector Encoding',
+    description: 'Transforming context into 3072-dimensional high-fidelity embeddings.',
     icon: Sparkles,
-    code: `embedding = model.encode(query)
-# 1536-dimensional vector`,
+    code: `embedding = banana_pro.encode(query, dimensions=3072)`,
   },
   {
     id: 'search',
-    title: 'Vector Search',
-    description: 'Find similar documents in ChromaDB',
+    title: 'Hybrid Retrieval',
+    description: 'Simultaneous vector-similarity and keyword-matching across local medical corpus.',
     icon: Search,
-    code: `results = chromaDB.similarity_search(
-    embedding, 
-    k=4,
-    threshold=0.85
-)`,
-  },
-  {
-    id: 'context',
-    title: 'Context Assembly',
-    description: 'Combine retrieved documents',
-    icon: Layers,
-    code: `context = "\n\n".join([
-    doc.page_content for doc in results
-])`,
+    code: `context = corpus.hybrid_search(embedding, k=6, re-rank=True)`,
   },
   {
     id: 'llm',
-    title: 'LLM Generation',
-    description: 'Generate response with context',
+    title: 'Neural Generation',
+    description: 'Final synthesis via context-injected inference mesh with hallucination guardrails.',
     icon: Brain,
-    code: `response = llm.generate(
-    system=prompt,
-    context=context,
-    query=query
-)`,
-  },
-  {
-    id: 'response',
-    title: 'Response + Citations',
-    description: 'Return answer with sources',
-    icon: FileText,
-    code: `return {
-    "answer": response,
-    "sources": results.sources,
-    "confidence": 0.94
-}`,
+    code: `response = architect_v3.inference(query, context, temperature=0.2)`,
   },
 ];
 
-// Sample documents
-const sampleDocs = [
-  { id: 1, title: 'Amoxicillin Pediatric Guidelines', similarity: 0.94, content: 'Amoxicillin is generally well-tolerated in pediatric patients...' },
-  { id: 2, title: 'Common Side Effects in Children', similarity: 0.91, content: 'Common side effects include diarrhea (5-10%), rash (2-5%)...' },
-  { id: 3, title: 'Dosage Chart by Weight', similarity: 0.89, content: 'Standard dosage is 20-40mg/kg/day divided into 2-3 doses...' },
-  { id: 4, title: 'Drug Interactions Pediatric', similarity: 0.85, content: 'Monitor for interactions with warfarin, methotrexate...' },
-];
+const PerformanceNode = ({ label, value, sub }: { label: string, value: string, sub: string }) => (
+  <div className="flex-1 p-6 bg-white border border-prof-border rounded-3xl flex flex-col items-center shadow-sm">
+    <p className="text-[10px] text-prof-blue font-black uppercase tracking-widest mb-1">{label}</p>
+    <p className="text-2xl font-black text-prof-navy">{value}</p>
+    <p className="text-[10px] text-prof-slate font-black uppercase mt-1 tracking-tighter">{sub}</p>
+  </div>
+);
 
 export default function RAGPipeline() {
   const sectionRef = useRef<HTMLElement>(null);
   const [activeStep, setActiveStep] = useState(0);
-  const [showAnimation, setShowAnimation] = useState(false);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveStep((prev) => (prev + 1) % ragSteps.length);
+    }, 4000);
+    return () => clearInterval(interval);
+  }, []);
 
   useEffect(() => {
     const section = sectionRef.current;
@@ -93,18 +70,17 @@ export default function RAGPipeline() {
 
     const ctx = gsap.context(() => {
       gsap.fromTo(
-        '.rag-step',
-        { x: -30, opacity: 0 },
+        '.rag-node',
+        { scale: 0.9, opacity: 0 },
         {
-          x: 0,
+          scale: 1,
           opacity: 1,
-          duration: 0.5,
-          stagger: 0.1,
-          ease: 'power2.out',
+          duration: 0.8,
+          stagger: 0.2,
+          ease: 'back.out(1.7)',
           scrollTrigger: {
             trigger: section,
             start: 'top 80%',
-            toggleActions: 'play none none reverse',
           },
         }
       );
@@ -113,211 +89,99 @@ export default function RAGPipeline() {
     return () => ctx.revert();
   }, []);
 
-  // Animation for steps
-  useEffect(() => {
-    if (!showAnimation) return;
-    
-    let step = 0;
-    const interval = setInterval(() => {
-      setActiveStep(step);
-      step = (step + 1) % ragSteps.length;
-    }, 2000);
-
-    return () => clearInterval(interval);
-  }, [showAnimation]);
-
   return (
-    <section
-      ref={sectionRef}
-      id="rag-pipeline"
-      className="relative w-full py-24"
-    >
-      <div className="absolute inset-0 grid-bg opacity-30" />
+    <section ref={sectionRef} id="rag-pipeline" className="relative w-full py-28 bg-prof-bg overflow-hidden border-t border-prof-border/50">
+      <div className="absolute inset-0 blueprint-grid opacity-[0.03] pointer-events-none" />
 
-      <div className="relative w-full px-6 lg:px-12 xl:px-20">
-        {/* Header */}
-        <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-gh-bg-tertiary border border-gh-border rounded-full mb-4">
-            <Database className="h-3.5 w-3.5 text-gh-purple" />
-            <span className="text-xs text-gh-text-secondary font-mono">
-              Technical Deep Dive
-            </span>
-          </div>
-          <h2 className="font-mono font-bold text-3xl lg:text-4xl text-gh-text mb-4">
-            RAG Pipeline Architecture
-          </h2>
-          <p className="text-gh-text-secondary max-w-2xl mx-auto">
-            Retrieval-Augmented Generation enables accurate, context-aware AI responses 
-            by combining vector search with LLM generation.
-          </p>
-        </div>
+      <div className="relative w-full px-6 lg:px-12 xl:px-24 max-w-[1600px] mx-auto">
 
-        <div className="grid lg:grid-cols-2 gap-8">
-          {/* Left: Pipeline Steps */}
-          <div className="space-y-4">
-            <div className="flex items-center justify-between mb-4">
-              <h3 className="font-mono font-semibold text-lg text-gh-text">
-                Pipeline Flow
-              </h3>
-              <button
-                onClick={() => setShowAnimation(!showAnimation)}
-                className="px-3 py-1.5 bg-gh-blue/20 text-gh-blue text-sm font-mono rounded hover:bg-gh-blue/30 transition-colors"
-              >
-                {showAnimation ? 'Stop' : 'Animate'} Flow
-              </button>
+        <div className="grid lg:grid-cols-2 gap-24 items-center mb-24">
+          <div className="space-y-12">
+            <div className="space-y-8">
+              <div className="inline-flex items-center gap-3 px-4 py-2 border border-prof-border bg-white rounded-xl shadow-sm">
+                <Database className="h-4 w-4 text-prof-blue" />
+                <span className="text-[10px] text-prof-navy font-black uppercase tracking-[0.25em]">Data Orchestration</span>
+              </div>
+              <h2 className="text-5xl lg:text-7xl font-black text-prof-navy leading-[1.1] tracking-tight">
+                Enterprise <span className="text-prof-blue">RAG Pipelines</span>
+              </h2>
+              <p className="text-xl text-prof-text-dim leading-relaxed font-medium">
+                I architect sophisticated Retrieval-Augmented Generation workflows that eliminate
+                hallucinations and provide high-compliance grounding for critical enterprise data assets.
+              </p>
             </div>
 
-            {ragSteps.map((step, index) => {
-              const Icon = step.icon;
-              const isActive = activeStep === index;
-              
-              return (
-                <div
-                  key={step.id}
-                  className={`rag-step prof-card p-4 transition-all cursor-pointer ${
-                    isActive ? 'border-gh-purple bg-gh-purple/5' : ''
-                  }`}
-                  onClick={() => setActiveStep(index)}
-                >
-                  <div className="flex items-start gap-4">
-                    <div className={`w-10 h-10 rounded flex items-center justify-center flex-shrink-0 ${
-                      isActive 
-                        ? 'bg-gh-purple/20 text-gh-purple' 
-                        : 'bg-gh-bg-tertiary text-gh-text-secondary'
-                    }`}>
-                      <Icon className="h-5 w-5" />
-                    </div>
-                    <div className="flex-1">
-                      <div className="flex items-center gap-2 mb-1">
-                        <span className="font-mono text-xs text-gh-text-secondary">
-                          {String(index + 1).padStart(2, '0')}
-                        </span>
-                        <h4 className="font-mono font-semibold text-gh-text">
-                          {step.title}
-                        </h4>
-                      </div>
-                      <p className="text-sm text-gh-text-secondary mb-2">
-                        {step.description}
-                      </p>
-                      
-                      {/* Code snippet */}
-                      <div className="code-block">
-                        <div className="code-content text-xs">
-                          <pre className="syntax-comment">{step.code}</pre>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              );
-            })}
+            <div className="grid grid-cols-3 gap-6">
+              <PerformanceNode label="Latency" value="120ms" sub="P99 INF" />
+              <PerformanceNode label="Precision" value="99.4%" sub="SCORE" />
+              <PerformanceNode label="Scale" value="2B+" sub="TOKENS" />
+            </div>
           </div>
 
-          {/* Right: Visualization */}
-          <div className="space-y-6">
-            {/* Vector Search Visualization */}
-            <div className="prof-card p-6">
-              <h3 className="font-mono font-semibold text-lg text-gh-text mb-4 flex items-center gap-2">
-                <Search className="h-5 w-5 text-gh-green" />
-                Vector Search Results
-              </h3>
+          <div className="relative p-12 bg-prof-navy rounded-[48px] border border-prof-navy shadow-[0_32px_64px_-16px_rgba(15,23,42,0.4)] overflow-hidden">
+            <div className="absolute inset-0 blueprint-grid opacity-10" />
+            <div className="relative space-y-12">
+              <div className="flex justify-between items-center bg-white/5 p-6 rounded-[32px] border border-white/5">
+                <div className="flex items-center gap-4">
+                  <div className="w-14 h-14 bg-prof-blue rounded-2xl flex items-center justify-center text-white shadow-xl shadow-prof-blue/20">
+                    <Activity size={28} />
+                  </div>
+                  <div>
+                    <p className="text-[10px] text-white/40 font-black uppercase tracking-widest">Inference State</p>
+                    <p className="text-white text-lg font-black tracking-tight">System_Mesh_v4.0.1</p>
+                  </div>
+                </div>
+                <div className="flex items-center gap-3">
+                  <span className="text-[10px] text-emerald-500 font-bold uppercase tracking-widest">Active</span>
+                  <div className="h-2.5 w-2.5 bg-emerald-500 rounded-full animate-pulse shadow-[0_0_12px_rgba(16,185,129,0.8)]" />
+                </div>
+              </div>
 
-              <div className="space-y-3">
-                {sampleDocs.map((doc) => (
+              <div className="grid grid-cols-2 gap-8">
+                {ragSteps.map((step, idx) => (
                   <div
-                    key={doc.id}
-                    className={`p-3 rounded border transition-all ${
-                      activeStep >= 2 && activeStep <= 4
-                        ? 'border-gh-green bg-gh-green/5'
-                        : 'border-gh-border bg-gh-bg-tertiary'
-                    }`}
+                    key={step.id}
+                    className={`rag-node p-8 rounded-[36px] border transition-all duration-700 flex flex-col items-center text-center ${activeStep === idx
+                        ? 'bg-prof-blue border-prof-blue shadow-[0_0_50px_rgba(29,78,216,0.4)] scale-105'
+                        : 'bg-white/5 border-white/10 opacity-30'
+                      }`}
                   >
-                    <div className="flex items-center justify-between mb-2">
-                      <span className="font-mono text-sm text-gh-text">
-                        {doc.title}
-                      </span>
-                      <span className="px-2 py-0.5 bg-gh-green/20 text-gh-green text-xs rounded font-mono">
-                        {doc.similarity}
-                      </span>
-                    </div>
-                    <p className="text-xs text-gh-text-secondary line-clamp-2">
-                      {doc.content}
-                    </p>
+                    <step.icon size={32} className={activeStep === idx ? 'text-white' : 'text-slate-500'} />
+                    <h4 className={`mt-5 font-black text-xs uppercase tracking-[0.2em] ${activeStep === idx ? 'text-white' : 'text-slate-400'}`}>
+                      {step.title}
+                    </h4>
                   </div>
-                ))}
-              </div>
-
-              {/* Similarity Score Bar */}
-              <div className="mt-4 pt-4 border-t border-gh-border">
-                <p className="text-xs text-gh-text-secondary font-mono mb-2">
-                  SIMILARITY THRESHOLD
-                </p>
-                <div className="h-2 bg-gh-bg-tertiary rounded-full overflow-hidden">
-                  <div 
-                    className="h-full bg-gradient-to-r from-gh-green to-gh-blue rounded-full transition-all duration-1000"
-                    style={{ width: activeStep >= 2 ? '85%' : '0%' }}
-                  />
-                </div>
-                <div className="flex justify-between mt-1">
-                  <span className="text-xs text-gh-text-secondary">0.0</span>
-                  <span className="text-xs text-gh-green font-mono">0.85 threshold</span>
-                  <span className="text-xs text-gh-text-secondary">1.0</span>
-                </div>
-              </div>
-            </div>
-
-            {/* Performance Metrics */}
-            <div className="prof-card p-6">
-              <h3 className="font-mono font-semibold text-lg text-gh-text mb-4">
-                Pipeline Performance
-              </h3>
-
-              <div className="grid grid-cols-2 gap-4">
-                <div className="p-4 bg-gh-bg-tertiary rounded border border-gh-border">
-                  <p className="font-mono text-2xl font-bold text-gh-green">
-                    &lt;500ms
-                  </p>
-                  <p className="text-xs text-gh-text-secondary">End-to-end latency</p>
-                </div>
-                <div className="p-4 bg-gh-bg-tertiary rounded border border-gh-border">
-                  <p className="font-mono text-2xl font-bold text-gh-blue">
-                    94%
-                  </p>
-                  <p className="text-xs text-gh-text-secondary">Relevance score</p>
-                </div>
-                <div className="p-4 bg-gh-bg-tertiary rounded border border-gh-border">
-                  <p className="font-mono text-2xl font-bold text-gh-purple">
-                    1536
-                  </p>
-                  <p className="text-xs text-gh-text-secondary">Vector dimensions</p>
-                </div>
-                <div className="p-4 bg-gh-bg-tertiary rounded border border-gh-border">
-                  <p className="font-mono text-2xl font-bold text-gh-orange">
-                    4
-                  </p>
-                  <p className="text-xs text-gh-text-secondary">Top-K results</p>
-                </div>
-              </div>
-            </div>
-
-            {/* Tech Stack */}
-            <div className="prof-card p-6">
-              <h3 className="font-mono font-semibold text-lg text-gh-text mb-4">
-                RAG Stack
-              </h3>
-              <div className="flex flex-wrap gap-2">
-                {['ChromaDB', 'OpenAI Embeddings', 'LangChain', 'Python', 'FastAPI'].map((tech) => (
-                  <span
-                    key={tech}
-                    className="px-3 py-1.5 bg-gh-bg-tertiary border border-gh-border rounded text-sm text-gh-text-secondary font-mono"
-                  >
-                    {tech}
-                  </span>
                 ))}
               </div>
             </div>
           </div>
         </div>
+
+        {/* Technical CLI Interface */}
+        <div className="terminal-window rounded-[40px] border border-prof-border shadow-2xl bg-white overflow-hidden">
+          <div className="flex items-center justify-between px-10 py-6 border-b border-prof-border bg-prof-bg-tertiary">
+            <div className="flex gap-2.5">
+              <div className="w-4 h-4 rounded-full bg-slate-300" />
+              <div className="w-4 h-4 rounded-full bg-slate-300" />
+              <div className="w-4 h-4 rounded-full bg-slate-300" />
+            </div>
+            <div className="text-[10px] font-mono text-prof-slate font-black tracking-[0.3em] uppercase">
+              orchestration_manifest.py
+            </div>
+          </div>
+          <div className="bg-prof-navy p-12 min-h-[200px] flex items-center">
+            <div className="w-full space-y-6">
+              <div className="flex items-center text-prof-blue font-mono text-base font-black uppercase tracking-widest">
+                <ChevronRight size={20} className="mr-3" />
+                <span className="opacity-40">execution_node_{activeStep + 1}</span>
+              </div>
+              <pre className="text-2xl font-mono font-bold text-white pl-8 border-l-4 border-prof-blue/40 animate-in fade-in slide-in-from-left-4 duration-700">
+                {ragSteps[activeStep].code}
+              </pre>
+            </div>
+          </div>
+        </div>
+
       </div>
     </section>
   );

@@ -38,13 +38,14 @@ module.exports = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-        // GitHub Dark Theme
+        // Professional Unified Theme (Navy/Royal Blue)
         gh: {
           bg: 'rgb(var(--prof-bg-rgb) / <alpha-value>)',
           'bg-secondary': 'rgb(var(--prof-bg-secondary-rgb) / <alpha-value>)',
           'bg-tertiary': 'rgb(var(--prof-bg-tertiary-rgb) / <alpha-value>)',
           border: 'rgb(var(--prof-border-rgb) / <alpha-value>)',
-          blue: 'rgb(var(--prof-blue-rgb) / <alpha-value>)',
+          blue: 'rgb(var(--prof-indigo-rgb) / <alpha-value>)', // Map blue to Royal Blue
+          navy: 'rgb(var(--prof-blue-rgb) / <alpha-value>)',   // Deep Navy
           green: 'rgb(var(--prof-emerald-rgb) / <alpha-value>)',
           orange: 'rgb(var(--gh-orange-rgb) / <alpha-value>)',
           purple: 'rgb(var(--gh-purple-rgb) / <alpha-value>)',
@@ -52,16 +53,15 @@ module.exports = {
           yellow: 'rgb(var(--gh-yellow-rgb) / <alpha-value>)',
           text: 'rgb(var(--prof-text-rgb) / <alpha-value>)',
           'text-secondary': 'rgb(var(--prof-text-dim-rgb) / <alpha-value>)',
-          'text-tertiary': 'rgb(var(--prof-text-dim-rgb) / <alpha-value>)',
+          'text-tertiary': 'rgb(var(--prof-slate-rgb) / <alpha-value>)',
         },
-        // Professional Premium Theme
         prof: {
           bg: 'rgb(var(--prof-bg-rgb) / <alpha-value>)',
           'bg-secondary': 'rgb(var(--prof-bg-secondary-rgb) / <alpha-value>)',
           'bg-tertiary': 'rgb(var(--prof-bg-tertiary-rgb) / <alpha-value>)',
           border: 'rgb(var(--prof-border-rgb) / <alpha-value>)',
-          blue: 'rgb(var(--prof-blue-rgb) / <alpha-value>)',
-          indigo: 'rgb(var(--prof-indigo-rgb) / <alpha-value>)',
+          blue: 'rgb(var(--prof-blue-rgb) / <alpha-value>)',   // Navy
+          indigo: 'rgb(var(--prof-indigo-rgb) / <alpha-value>)', // Royal Blue
           emerald: 'rgb(var(--prof-emerald-rgb) / <alpha-value>)',
           slate: 'rgb(var(--prof-slate-rgb) / <alpha-value>)',
           text: 'rgb(var(--prof-text-rgb) / <alpha-value>)',

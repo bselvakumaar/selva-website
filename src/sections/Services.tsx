@@ -7,10 +7,11 @@ import {
   Cloud,
   RefreshCw,
   ArrowRight,
-  Code,
-  GitBranch,
+  Terminal,
+  Cpu,
   Shield,
   Database,
+  Zap,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
@@ -20,130 +21,73 @@ const services = [
   {
     id: 'fractional-cto',
     title: 'Fractional CTO',
-    description: 'Strategic technology leadership without the full-time commitment.',
+    description: 'Executive technology leadership and strategic roadmaps for rapid enterprise scale.',
     icon: Users,
     features: [
-      'Technical roadmap planning',
-      'Architecture reviews',
-      'Team mentorship & hiring',
-      'Technology stack selection',
+      'Architectural Integrity Audits',
+      'Team Scaling & Tech Hiring',
+      'Innovation Strategy',
+      'Vendor & Stack Optimization',
     ],
-    color: 'from-cyan-500/20 to-cyan-600/10',
   },
   {
     id: 'genai-dev',
-    title: 'GenAI Platform Development',
-    description: 'End-to-end AI platform engineering with production-grade reliability.',
+    title: 'GenAI Orchestration',
+    description: 'Engineering production-ready cognitive systems with Multi-Agent designs.',
     icon: Brain,
     features: [
-      'LLM integration & orchestration',
-      'RAG system implementation',
-      'Multi-tenant SaaS architecture',
-      'AI workflow automation',
+      'Fine-tuning (LoRA/QLoRA)',
+      'High-Fidelity RAG Systems',
+      'Agentic Workflow Design',
+      'Hallucination Guardrails',
     ],
-    color: 'from-purple-500/20 to-purple-600/10',
   },
   {
     id: 'cloud-devops',
-    title: 'Cloud & DevOps',
-    description: 'Scalable infrastructure and deployment automation.',
+    title: 'Resilient Cloud Ops',
+    description: 'High-availability infrastructure designed for 99.9% production SLAs.',
     icon: Cloud,
     features: [
-      'Cloud-native migration',
-      'Kubernetes orchestration',
-      'CI/CD pipeline design',
-      'Infrastructure hardening',
+      'Kubernetes Mesh Systems',
+      'Edge Inference Performance',
+      'Hardened Security Identity',
+      'Automated Zero-Downtime CI/CD',
     ],
-    color: 'from-blue-500/20 to-blue-600/10',
   },
   {
     id: 'modernization',
-    title: 'Legacy Modernization',
-    description: 'Transform legacy systems into modern, scalable architectures.',
+    title: 'Nexus Modernization',
+    description: 'Refactoring legacy bottlenecks into modern, reactive micro-architectures.',
     icon: RefreshCw,
     features: [
-      'Monolith-to-microservices',
-      'Database optimization',
-      'Performance tuning',
-      'Security audits',
+      'Reactive System Transformation',
+      'Distributed DB Optimization',
+      'Bottleneck Remediation',
+      'Global Service Meshing',
     ],
-    color: 'from-orange-500/20 to-orange-600/10',
   },
-];
-
-const techCapabilities = [
-  { icon: Code, label: 'Full-Stack Development' },
-  { icon: GitBranch, label: 'MLOps & Pipelines' },
-  { icon: Shield, label: 'Security & Compliance' },
-  { icon: Database, label: 'Data Engineering' },
 ];
 
 export default function Services() {
   const sectionRef = useRef<HTMLElement>(null);
-  const headerRef = useRef<HTMLDivElement>(null);
-  const cardsRef = useRef<HTMLDivElement>(null);
-  const capabilitiesRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const section = sectionRef.current;
-    const header = headerRef.current;
-    const cards = cardsRef.current;
-    const capabilities = capabilitiesRef.current;
-
-    if (!section || !header || !cards || !capabilities) return;
+    if (!section) return;
 
     const ctx = gsap.context(() => {
-      // Header animation
       gsap.fromTo(
-        header,
+        '.svc-card',
         { y: 40, opacity: 0 },
         {
           y: 0,
           opacity: 1,
           duration: 0.8,
-          ease: 'power2.out',
+          stagger: 0.15,
+          ease: 'power3.out',
           scrollTrigger: {
             trigger: section,
             start: 'top 80%',
-            toggleActions: 'play none none reverse',
-          },
-        }
-      );
-
-      // Cards animation
-      const cardElements = cards.children;
-      gsap.fromTo(
-        cardElements,
-        { y: 50, opacity: 0 },
-        {
-          y: 0,
-          opacity: 1,
-          duration: 0.6,
-          stagger: 0.1,
-          ease: 'power2.out',
-          scrollTrigger: {
-            trigger: cards,
-            start: 'top 80%',
-            toggleActions: 'play none none reverse',
-          },
-        }
-      );
-
-      // Capabilities animation
-      const capElements = capabilities.children;
-      gsap.fromTo(
-        capElements,
-        { scale: 0.9, opacity: 0 },
-        {
-          scale: 1,
-          opacity: 1,
-          duration: 0.5,
-          stagger: 0.08,
-          ease: 'power2.out',
-          scrollTrigger: {
-            trigger: capabilities,
-            start: 'top 85%',
-            toggleActions: 'play none none reverse',
           },
         }
       );
@@ -160,115 +104,70 @@ export default function Services() {
   };
 
   return (
-    <section
-      ref={sectionRef}
-      id="services"
-      className="relative w-full py-24 lg:py-32 z-40"
-    >
-      {/* Background */}
-      <div className="absolute inset-0">
-        <img
-          src="/images/team-collab-01.jpg"
-          alt="Team collaboration"
-          className="w-full h-full object-cover"
-        />
-        <div className="absolute inset-0 bg-gradient-to-r from-prof-bg via-prof-bg/95 to-prof-bg/80" />
-        <div className="absolute inset-0 grid-bg opacity-30" />
-      </div>
+    <section ref={sectionRef} id="services" className="relative w-full py-28 bg-prof-bg overflow-hidden border-t border-prof-border/50">
+      <div className="absolute inset-0 blueprint-grid opacity-[0.03] pointer-events-none" />
 
-      <div className="relative w-full px-6 lg:px-12 xl:px-20">
-        {/* Header */}
-        <div ref={headerRef} className="mb-16">
-          <p className="font-mono text-xs tracking-[0.12em] text-prof-blue mb-4 uppercase">
-            What I Offer
-          </p>
-          <h2 className="font-heading font-bold text-3xl lg:text-5xl text-prof-text mb-4">
-            Fractional CTO & Platform Development
-          </h2>
-          <p className="text-muted-foreground max-w-2xl">
-            I help startups and enterprises build, scale, and optimize their technology.
-            From strategy to execution—senior hands at every step.
-          </p>
+      <div className="relative w-full px-6 lg:px-12 xl:px-24 max-w-[1600px] mx-auto">
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-24 gap-8">
+          <div className="space-y-8">
+            <div className="inline-flex items-center gap-3 px-4 py-2 border border-prof-border bg-white rounded-xl shadow-sm">
+              <Zap className="h-4 w-4 text-prof-blue" />
+              <span className="text-[10px] text-prof-navy font-black uppercase tracking-[0.25em]">Capability Matrix</span>
+            </div>
+            <h2 className="text-5xl lg:text-7xl font-black text-prof-navy leading-tight tracking-tight">
+              Architectural <span className="text-prof-blue">Offerings</span>
+            </h2>
+            <p className="text-xl text-prof-text-dim max-w-2xl leading-relaxed font-medium">
+              Specialized technical modules designed to solve complex enterprise challenges
+              through cognitive engineering and high-availability design.
+            </p>
+          </div>
+          <Button
+            onClick={scrollToContact}
+            className="h-16 px-10 bg-prof-navy text-white rounded-2xl font-black shadow-2xl shadow-prof-navy/10 hover:bg-prof-blue hover:scale-105 transition-all text-lg"
+          >
+            Initialize Project <ArrowRight className="ml-2 h-5 w-5" />
+          </Button>
         </div>
 
-        {/* Service Cards */}
-        <div
-          ref={cardsRef}
-          className="grid md:grid-cols-2 gap-6 mb-12"
-        >
-          {services.map((service) => {
-            const Icon = service.icon;
-            return (
-              <div
-                key={service.id}
-                className="group glass-panel rounded-2xl p-6 hover:border-cyan/30 transition-all duration-500"
-              >
-                {/* Icon */}
-                <div
-                  className={`w-12 h-12 rounded-xl bg-gradient-to-br ${service.color} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300`}
-                >
-                  <Icon className="h-6 w-6 text-prof-text" />
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-10 mb-24">
+          {services.map((svc) => (
+            <div key={svc.id} className="svc-card group">
+              <div className="bg-white border border-prof-border p-10 h-full flex flex-col hover:border-prof-blue hover:shadow-2xl hover:shadow-prof-navy/5 transition-all duration-700 rounded-[40px]">
+                <div className="w-16 h-16 bg-prof-bg-tertiary rounded-2xl flex items-center justify-center text-prof-navy mb-8 group-hover:bg-prof-navy group-hover:text-white transition-all duration-500 group-hover:shadow-xl shadow-prof-navy/5">
+                  <svc.icon size={28} />
                 </div>
+                <h3 className="text-2xl font-black text-prof-navy mb-4 group-hover:text-prof-blue transition-colors tracking-tight">{svc.title}</h3>
+                <p className="text-prof-text-dim text-base font-medium leading-relaxed mb-10 flex-1">{svc.description}</p>
 
-                {/* Content */}
-                <h3 className="font-heading font-bold text-xl text-prof-text mb-2">
-                  {service.title}
-                </h3>
-                <p className="text-sm text-muted-foreground mb-4">
-                  {service.description}
-                </p>
-
-                {/* Features */}
-                <ul className="space-y-2">
-                  {service.features.map((feature) => (
-                    <li
-                      key={feature}
-                      className="text-sm flex items-center gap-2 text-prof-text-dim"
-                    >
-                      <span className="w-1 h-1 rounded-full bg-prof-blue flex-shrink-0" />
-                      {feature}
+                <ul className="space-y-4 border-t border-prof-border pt-8">
+                  {svc.features.map(feat => (
+                    <li key={feat} className="flex items-center gap-4 text-[10px] font-black text-prof-slate uppercase tracking-widest">
+                      <div className="w-1.5 h-1.5 rounded-full bg-prof-blue/20" />
+                      {feat}
                     </li>
                   ))}
                 </ul>
               </div>
-            );
-          })}
+            </div>
+          ))}
         </div>
 
-        {/* Tech Capabilities */}
-        <div
-          ref={capabilitiesRef}
-          className="prof-card rounded-2xl p-6"
-        >
-          <p className="font-mono text-xs tracking-[0.12em] text-prof-blue mb-4 uppercase">
-            Core Capabilities
-          </p>
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-            {techCapabilities.map((cap) => {
-              const Icon = cap.icon;
-              return (
-                <div
-                  key={cap.label}
-                  className="flex items-center gap-3 p-3 bg-prof-bg-secondary/50 rounded-lg"
-                >
-                  <Icon className="h-5 w-5 text-prof-blue" />
-                  <span className="text-sm text-prof-text">{cap.label}</span>
-                </div>
-              );
-            })}
-          </div>
+        {/* Technical Capability Badge Bar */}
+        <div className="flex flex-wrap items-center justify-center gap-x-16 gap-y-10 py-16 border-y border-prof-border/50">
+          {[
+            { icon: Terminal, label: 'Full-Stack Eng' },
+            { icon: Cpu, label: 'MLOps Architect' },
+            { icon: Shield, label: 'Security Nexus' },
+            { icon: Database, label: 'Vector Data Mesh' },
+          ].map(cap => (
+            <div key={cap.label} className="flex items-center gap-5 group">
+              <cap.icon className="h-6 w-6 text-prof-slate/30 group-hover:text-prof-blue transition-colors" />
+              <span className="text-[12px] font-black text-prof-navy uppercase tracking-[0.4em]">{cap.label}</span>
+            </div>
+          ))}
         </div>
 
-        {/* CTA */}
-        <div className="mt-12 text-center">
-          <Button
-            onClick={scrollToContact}
-            className="bg-prof-blue text-white hover:bg-prof-blue/90 font-semibold px-8 py-6 text-base group"
-          >
-            Discuss Your Project
-            <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-          </Button>
-        </div>
       </div>
     </section>
   );

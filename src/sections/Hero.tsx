@@ -1,37 +1,40 @@
 import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { ArrowRight, Terminal, Cpu, Database, Globe, Clock, FileText } from 'lucide-react';
+import { ArrowRight, Cpu, Database, Globe, Clock, Sparkles } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 gsap.registerPlugin(ScrollTrigger);
 
 const stats = [
   { icon: Clock, value: '25+', label: 'Years Experience' },
-  { icon: Cpu, value: '4', label: 'Live GenAI Platforms' },
+  { icon: Cpu, value: '6', label: 'Live GenAI Platforms' },
   { icon: Database, value: '99.9%', label: 'Uptime SLA' },
   { icon: Globe, value: '12+', label: 'Countries' },
 ];
 
 const terminalLines = [
-  { prompt: '> whoami', output: 'selvakumar-balakrishnan', delay: 0 },
-  { prompt: '> role --current', output: 'Senior AI/ML Engineer & System Architect', delay: 0.5 },
-  { prompt: '> expertise --list', output: 'GenAI Platforms • Multi-Tenant SaaS • System Design • MLOps', delay: 1 },
-  { prompt: '> status', output: 'Building production-grade AI systems since 1999', delay: 1.5 },
+  { prompt: '> system_init', output: 'Authorized: Selvakumar Balakrishnan', delay: 0 },
+  { prompt: '> get_role', output: 'Senior AI System Architect & GenAI Specialist', delay: 0.5 },
+  { prompt: '> query --status', output: 'Orchestrating production-grade Multi-Agent workflows.', delay: 1 },
+  { prompt: '> uptime', output: '25 Years Linear Expertise across BFSI, Healthcare & AI.', delay: 1.5 },
 ];
 
 export default function Hero() {
   const sectionRef = useRef<HTMLElement>(null);
-  const terminalRef = useRef<HTMLDivElement>(null);
   const [visibleLines, setVisibleLines] = useState<number[]>([]);
 
   useEffect(() => {
-    // Animate terminal lines
-    terminalLines.forEach((_, index) => {
-      setTimeout(() => {
-        setVisibleLines(prev => [...prev, index]);
+    setVisibleLines([]);
+    const timers = terminalLines.map((_, index) => {
+      return setTimeout(() => {
+        setVisibleLines(prev => {
+          if (prev.includes(index)) return prev;
+          return [...prev, index];
+        });
       }, terminalLines[index].delay * 1000);
     });
+    return () => timers.forEach(clearTimeout);
   }, []);
 
   useEffect(() => {
@@ -40,173 +43,135 @@ export default function Hero() {
 
     const ctx = gsap.context(() => {
       gsap.fromTo(
-        '.stat-card',
-        { y: 30, opacity: 0 },
-        {
-          y: 0,
-          opacity: 1,
-          duration: 0.8,
-          stagger: 0.15,
-          ease: 'power3.out',
-          scrollTrigger: {
-            trigger: section,
-            start: 'top 80%',
-            toggleActions: 'play none none reverse',
-          },
-        }
+        '.hero-content',
+        { y: 50, opacity: 0 },
+        { y: 0, opacity: 1, duration: 1, ease: 'power4.out' }
+      );
+
+      gsap.fromTo(
+        '.hero-stats',
+        { scale: 0.95, opacity: 0 },
+        { scale: 1, opacity: 1, duration: 1, delay: 0.5, ease: 'back.out(1.7)' }
       );
     }, section);
 
     return () => ctx.revert();
   }, []);
 
-  const scrollToSection = (id: string) => {
-    const element = document.querySelector(id);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
   return (
-    <section
-      ref={sectionRef}
-      className="relative w-full min-h-screen pt-32 pb-24 overflow-hidden"
-    >
-      {/* Dynamic Background Elements */}
-      <div className="absolute inset-0 grid-bg opacity-30" />
-      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-prof-blue/10 blur-[120px] rounded-full pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-prof-indigo/5 blur-[100px] rounded-full pointer-events-none" />
+    <section ref={sectionRef} className="relative w-full min-h-screen pt-28 pb-16 overflow-hidden bg-prof-bg">
+      {/* Enterprise Architecture Background */}
+      <div className="absolute inset-0 blueprint-grid opacity-[0.06] pointer-events-none" />
+      <div className="absolute top-[-20%] right-[-10%] w-[70%] h-[70%] bg-prof-blue/5 blur-[120px] rounded-full pointer-events-none" />
 
-      <div className="relative w-full px-6 lg:px-12 xl:px-24">
-        <div className="grid lg:grid-cols-2 gap-16 items-center min-h-[calc(100vh-12rem)]">
-          {/* Left: Professional Narrative */}
-          <div className="space-y-10">
-            {/* Status Badge */}
-            <div className="inline-flex items-center gap-2.5 px-4 py-1.5 bg-prof-bg-secondary/80 border border-prof-border rounded-full backdrop-blur-sm">
-              <span className="w-2 h-2 bg-prof-emerald rounded-full animate-pulse shadow-[0_0_8px_rgba(16,185,129,0.5)]" />
-              <span className="text-[11px] text-prof-slate font-bold uppercase tracking-widest">
-                System Architect • GenAI Expert
+      <div className="relative w-full px-6 lg:px-12 xl:px-24 max-w-[1600px] mx-auto">
+        <div className="grid lg:grid-cols-12 gap-16 items-center">
+
+          {/* Left Side: Bold Typography */}
+          <div className="lg:col-span-7 hero-content space-y-12">
+            <div className="inline-flex items-center gap-3 px-4 py-2 border border-prof-border bg-white shadow-sm rounded-xl">
+              <Sparkles className="h-4 w-4 text-prof-blue" />
+              <span className="text-[10px] text-prof-navy font-black uppercase tracking-[0.25em]">
+                Technical Architect • GenAI Strategist
               </span>
             </div>
 
-            {/* Headline */}
-            <div className="space-y-4">
-              <h1 className="text-5xl lg:text-7xl font-extrabold text-prof-text leading-tight tracking-tighter">
-                Selvakumar
-                <br />
-                <span className="bg-gradient-to-r from-prof-blue to-prof-indigo bg-clip-text text-transparent italic">
-                  Balakrishnan
-                </span>
+            <div className="space-y-8">
+              <h1 className="text-6xl lg:text-8xl font-black text-prof-navy leading-[1.02] tracking-tight">
+                Engineering <br />
+                <span className="text-prof-blue underline decoration-8 decoration-prof-blue/10 underline-offset-[12px]">Intelligence</span>
               </h1>
-              <p className="text-xl md:text-2xl text-prof-blue font-mono font-bold tracking-tight">
-                AI/ML Solution Architect / Manager
+              <p className="text-xl text-prof-text-dim max-w-xl leading-relaxed font-medium">
+                Designing high-compliance <span className="text-prof-navy font-bold">GenAI Ecosystems</span> and
+                <span className="text-prof-navy font-bold"> Autonomous Architectures</span> that transform
+                legacy enterprise complexity into scalable competitive advantage.
               </p>
             </div>
 
-            {/* Call to Actions */}
-            <div className="flex flex-wrap gap-5">
-              <Button
-                onClick={() => scrollToSection('#platforms')}
-                className="bg-prof-blue text-white hover:bg-prof-blue/90 font-bold px-8 h-12 rounded-lg shadow-lg shadow-prof-blue/20 transition-all hover:scale-105"
-              >
-                <Terminal className="mr-2.5 h-4 w-4" />
-                Live Platforms
-                <ArrowRight className="ml-2.5 h-4 w-4" />
+            <div className="flex flex-wrap gap-6 pt-4">
+              <Button size="lg" className="h-16 px-10 bg-prof-navy text-white rounded-2xl shadow-xl shadow-prof-navy/20 hover:bg-prof-blue hover:scale-[1.02] transition-all text-lg font-bold">
+                Deploy Solutions <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
-              <Button
-                onClick={() => scrollToSection('#resume')}
-                variant="outline"
-                className="border-prof-border text-prof-text hover:bg-prof-bg-secondary h-12 px-8 rounded-lg flex items-center gap-2"
-              >
-                <FileText className="mr-2 h-4 w-4" />
-                View Resume
+              <Button variant="outline" size="lg" className="h-16 px-10 border-2 border-prof-border text-prof-navy rounded-2xl hover:bg-prof-bg-tertiary text-lg font-bold transition-all">
+                Architecture Specs
               </Button>
             </div>
 
-            {/* Stats Showcase */}
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-10 border-t border-slate-900">
-              {stats.map((stat) => {
-                const Icon = stat.icon;
-                return (
-                  <div
-                    key={stat.label}
-                    className="stat-card group"
-                  >
-                    <Icon className="h-5 w-5 text-prof-blue/60 mb-3 group-hover:text-prof-blue transition-colors" />
-                    <p className="text-2xl font-bold text-prof-text mb-1">
-                      {stat.value}
-                    </p>
-                    <p className="text-[10px] text-prof-slate font-bold uppercase tracking-wider">{stat.label}</p>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 pt-10 hero-stats border-t border-prof-border/50">
+              {stats.map((stat) => (
+                <div key={stat.label} className="space-y-2">
+                  <div className="flex items-center gap-2 text-prof-blue">
+                    <stat.icon className="h-4 w-4" />
+                    <span className="font-black text-[10px] uppercase tracking-widest text-prof-slate">{stat.label}</span>
                   </div>
-                );
-              })}
+                  <p className="text-4xl font-black text-prof-navy">{stat.value}</p>
+                </div>
+              ))}
             </div>
           </div>
 
-          {/* Right: Interactive Terminal */}
-          <div ref={terminalRef} className="hidden lg:block">
-            <div className="terminal border-prof-border">
-              <div className="terminal-header bg-prof-bg-secondary/50">
-                <div className="flex gap-2">
-                  <div className="terminal-dot terminal-dot-red" />
-                  <div className="terminal-dot terminal-dot-yellow" />
-                  <div className="terminal-dot terminal-dot-green" />
+          {/* Right Side: Pro Terminal */}
+          <div className="lg:col-span-5 relative">
+            <div className="absolute -inset-10 bg-prof-blue/5 blur-[100px] rounded-full opacity-50" />
+
+            <div className="terminal-window rounded-3xl border border-prof-navy shadow-[0_32px_64px_-16px_rgba(15,23,42,0.3)] bg-prof-navy relative overflow-hidden">
+              <div className="terminal-header flex items-center justify-between px-8 py-5 bg-prof-navy/50 border-b border-white/5 backdrop-blur-md">
+                <div className="flex gap-2.5">
+                  <div className="w-3.5 h-3.5 rounded-full bg-slate-700" />
+                  <div className="w-3.5 h-3.5 rounded-full bg-slate-700" />
+                  <div className="w-3.5 h-3.5 rounded-full bg-slate-700" />
                 </div>
-                <span className="text-[10px] text-prof-slate font-bold tracking-widest ml-4">
-                  TERMINAL SYSTEM v4.0
-                </span>
+                <div className="text-[10px] text-white/40 font-mono font-black tracking-[0.3em] uppercase">
+                  selva_architecture.sys
+                </div>
               </div>
 
-              <div className="terminal-body">
-                {terminalLines.map((line, index) => (
-                  <div
-                    key={index}
-                    className={`transition-all duration-700 ${visibleLines.includes(index) ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-4'
-                      }`}
-                  >
-                    <div className="flex items-center">
-                      <span className="terminal-prompt">❯</span>
-                      <span className="terminal-command font-bold text-prof-blue">{line.prompt}</span>
+              <div className="terminal-body p-10 space-y-8 min-h-[420px] bg-gradient-to-b from-prof-navy to-[#020617]">
+                {visibleLines.map((index) => (
+                  <div key={index} className="space-y-3 animate-in fade-in slide-in-from-left-4 duration-700">
+                    <div className="flex items-center font-mono">
+                      <span className="text-prof-indigo font-bold mr-3">λ</span>
+                      <span className="text-slate-400 font-bold">{terminalLines[index].prompt}</span>
                     </div>
-                    {visibleLines.includes(index) && (
-                      <div className="terminal-output">
-                        {line.output}
-                      </div>
-                    )}
+                    <div className="pl-6 border-l-2 border-prof-indigo/20 py-1">
+                      <p className="text-white text-base font-bold tracking-tight">
+                        {terminalLines[index].output}
+                      </p>
+                    </div>
                   </div>
                 ))}
+                {visibleLines.length < terminalLines.length && (
+                  <div className="flex items-center gap-2 text-prof-indigo font-mono animate-pulse ml-1 mt-4">
+                    <div className="w-2 h-5 bg-prof-indigo" />
+                    <span className="text-[10px] font-black uppercase tracking-widest">Processing Context...</span>
+                  </div>
+                )}
+              </div>
 
-                {/* Active Prompt */}
-                <div className="flex items-center mt-2">
-                  <span className="terminal-prompt">❯</span>
-                  <span className="w-2 h-4 bg-prof-emerald animate-pulse" />
+              {/* Status Bar */}
+              <div className="px-8 py-4 bg-white/5 border-t border-white/5 flex justify-between items-center">
+                <div className="flex items-center gap-2">
+                  <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                  <span className="text-[9px] text-emerald-500 font-black tracking-widest uppercase">System Operational</span>
                 </div>
+                <span className="text-[9px] text-slate-500 font-mono uppercase tracking-widest">v4.0.0-PRO</span>
               </div>
             </div>
 
-            {/* Technical Context Card */}
-            <div className="mt-8 prof-card p-[1px] bg-gradient-to-br from-prof-border/50 to-prof-bg-tertiary/50">
-              <div className="bg-prof-bg rounded-[11px] overflow-hidden">
-                <div className="px-5 py-3 bg-prof-bg-secondary/50 flex justify-between items-center border-b border-prof-border">
-                  <span className="text-[10px] text-prof-slate font-bold tracking-widest">ARCHITECTURE.YAML</span>
-                  <div className="flex gap-1.5">
-                    <div className="w-1.5 h-1.5 rounded-full bg-prof-blue/30" />
-                    <div className="w-1.5 h-1.5 rounded-full bg-prof-blue/30" />
-                  </div>
+            {/* Floating Technical Overlay */}
+            <div className="absolute -bottom-10 -right-6 p-8 bg-white border border-prof-border shadow-2xl rounded-3xl animate-float [animation-delay:2s]">
+              <div className="flex items-center gap-5">
+                <div className="w-14 h-14 bg-prof-navy rounded-2xl flex items-center justify-center text-white shadow-lg shadow-prof-navy/20">
+                  <Cpu className="h-7 w-7" />
                 </div>
-                <div className="p-6 font-mono text-[13px] leading-relaxed relative">
-                  <pre className="text-prof-slate/90">
-                    <span className="text-prof-blue">genai_platform:</span>
-                    <br />  <span className="text-prof-indigo">architecture:</span> multi-tenant-agentic
-                    <br />  <span className="text-prof-indigo">llm_stack:</span> [gpt-4o, claude-3.5, gemini-1.5]
-                    <br />  <span className="text-prof-indigo">vector_mesh:</span> hybrid-search-pinecone
-                    <br />  <span className="text-prof-indigo">availability:</span> high-resilience-99.99
-                    <br />  <span className="text-prof-indigo">production:</span> <span className="text-prof-emerald">true</span>
-                  </pre>
+                <div>
+                  <p className="text-[10px] text-prof-slate font-black uppercase tracking-widest mb-1">Inference Speed</p>
+                  <p className="text-2xl font-black text-prof-navy">~140 t/s</p>
                 </div>
               </div>
             </div>
           </div>
+
         </div>
       </div>
     </section>

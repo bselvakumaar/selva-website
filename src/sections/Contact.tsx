@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { Mail, Linkedin, Github, Twitter, ArrowRight, CheckCircle } from 'lucide-react';
+import { Mail, Linkedin, Github, GitBranch, CheckCircle, Send, Globe, MessageCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -9,22 +9,9 @@ import { Label } from '@/components/ui/label';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const socialLinks = [
-  { icon: Linkedin, label: 'LinkedIn', href: '#' },
-  { icon: Github, label: 'GitHub', href: '#' },
-  { icon: Twitter, label: 'Twitter', href: '#' },
-];
-
 export default function Contact() {
   const sectionRef = useRef<HTMLElement>(null);
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    company: '',
-    message: '',
-  });
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitted, setSubmitted] = useState(false);
+  const [formStatus, setFormStatus] = useState<'idle' | 'submitting' | 'success'>('idle');
 
   useEffect(() => {
     const section = sectionRef.current;
@@ -32,17 +19,17 @@ export default function Contact() {
 
     const ctx = gsap.context(() => {
       gsap.fromTo(
-        '.contact-content',
-        { y: 40, opacity: 0 },
+        '.contact-item',
+        { y: 30, opacity: 0 },
         {
           y: 0,
           opacity: 1,
-          duration: 0.6,
-          ease: 'power2.out',
+          duration: 0.8,
+          stagger: 0.2,
+          ease: 'power3.out',
           scrollTrigger: {
             trigger: section,
             start: 'top 80%',
-            toggleActions: 'play none none reverse',
           },
         }
       );
@@ -51,193 +38,144 @@ export default function Contact() {
     return () => ctx.revert();
   }, []);
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setIsSubmitting(true);
-    
-    // Simulate form submission
-    await new Promise((resolve) => setTimeout(resolve, 1500));
-    
-    setIsSubmitting(false);
-    setSubmitted(true);
-    setFormData({ name: '', email: '', company: '', message: '' });
+    setFormStatus('submitting');
+    setTimeout(() => setFormStatus('success'), 1500);
   };
 
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    setFormData((prev) => ({
-      ...prev,
-      [e.target.name]: e.target.value,
-    }));
-  };
+  const contactLinks = [
+    { icon: Mail, label: 'Email Architecture', value: 'selvawiz@gmail.com', href: 'mailto:selvawiz@gmail.com' },
+    { icon: Linkedin, label: 'Professional Network', value: 'linkedin.com/in/bselvakumaar', href: 'https://linkedin.com/in/bselvakumaar' },
+    { icon: Github, label: 'Engineering Repository', value: 'github.com/bselvakumaar', href: 'https://github.com/bselvakumaar' },
+    { icon: Globe, label: 'Global Availability', value: 'GMT+5:30 (Bangalore)', href: '#' },
+  ];
 
   return (
-    <section
-      ref={sectionRef}
-      id="contact"
-      className="relative w-full py-24"
-    >
-      <div className="absolute inset-0 grid-bg opacity-30" />
+    <section ref={sectionRef} id="contact" className="relative w-full py-28 bg-white overflow-hidden border-t border-prof-border/50">
+      <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-prof-border to-transparent" />
 
-      <div className="relative w-full px-6 lg:px-12 xl:px-20">
-        <div className="contact-content grid lg:grid-cols-2 gap-12 items-start">
-          {/* Left: Content */}
-          <div>
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-gh-bg-tertiary border border-gh-border rounded-full mb-4">
-              <Mail className="h-3.5 w-3.5 text-gh-blue" />
-              <span className="text-xs text-gh-text-secondary font-mono">
-                Get In Touch
-              </span>
-            </div>
-            
-            <h2 className="font-mono font-bold text-3xl lg:text-4xl text-gh-text mb-4">
-              Let's Build Something
-            </h2>
-            <p className="text-gh-text-secondary max-w-lg mb-8">
-              Whether you need a fractional CTO or a full AI platform, let's talk. 
-              Tell me what you're trying to predict, automate, or optimize. 
-              I'll reply within 24 hours.
-            </p>
+      <div className="relative w-full px-6 lg:px-12 xl:px-24 max-w-[1600px] mx-auto">
+        <div className="grid lg:grid-cols-12 gap-20 items-stretch">
 
-            {/* Contact Info */}
-            <div className="space-y-4 mb-8">
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 bg-gh-blue/10 rounded-lg flex items-center justify-center">
-                  <Mail className="h-5 w-5 text-gh-blue" />
-                </div>
-                <div>
-                  <p className="text-xs text-gh-text-secondary font-mono">email</p>
-                  <a
-                    href="mailto:hello@selvakumar.dev"
-                    className="text-gh-text hover:text-gh-blue transition-colors font-mono"
-                  >
-                    hello@selvakumar.dev
-                  </a>
-                </div>
+          {/* Left: Professional Context */}
+          <div className="lg:col-span-5 space-y-12 flex flex-col justify-center">
+            <div className="space-y-8">
+              <div className="inline-flex items-center gap-3 px-4 py-2 border border-prof-border bg-prof-bg shadow-sm rounded-xl">
+                <GitBranch className="h-4 w-4 text-prof-blue" />
+                <span className="text-[10px] text-prof-navy font-black uppercase tracking-[0.25em]">Direct Access</span>
               </div>
+              <h2 className="text-5xl lg:text-7xl font-black text-prof-navy leading-[1.1] tracking-tight">
+                Initialize <br />
+                <span className="text-prof-blue">Consultation</span>
+              </h2>
+              <p className="text-xl text-prof-text-dim leading-relaxed font-medium">
+                Seeking architectural guidance for specialized GenAI roadmaps or high-compliance systems?
+                Connect directly for a high-bandwidth technical discussion.
+              </p>
             </div>
 
-            {/* Social Links */}
-            <div className="flex gap-3">
-              {socialLinks.map((social) => {
-                const Icon = social.icon;
-                return (
-                  <a
-                    key={social.label}
-                    href={social.href}
-                    className="w-10 h-10 bg-gh-bg-tertiary border border-gh-border rounded-lg flex items-center justify-center text-gh-text-secondary hover:text-gh-blue hover:border-gh-blue transition-all duration-300"
-                    aria-label={social.label}
-                  >
-                    <Icon className="h-5 w-5" />
-                  </a>
-                );
-              })}
+            <div className="space-y-6">
+              {contactLinks.map((link) => (
+                <a
+                  key={link.label}
+                  href={link.href}
+                  className="contact-item group flex items-center gap-6 p-6 bg-prof-bg-secondary border border-prof-border rounded-3xl hover:border-prof-blue transition-all duration-500 hover:shadow-xl hover:shadow-prof-navy/5"
+                >
+                  <div className="w-14 h-14 bg-white border border-prof-border rounded-2xl flex items-center justify-center text-prof-navy group-hover:bg-prof-navy group-hover:text-white transition-all duration-500">
+                    <link.icon size={26} />
+                  </div>
+                  <div>
+                    <p className="text-[9px] text-prof-slate font-black uppercase tracking-[0.2em] mb-1">{link.label}</p>
+                    <p className="text-lg font-black text-prof-navy group-hover:text-prof-blue transition-colors">{link.value}</p>
+                  </div>
+                </a>
+              ))}
             </div>
           </div>
 
-          {/* Right: Form */}
-          <div className="prof-card p-6 lg:p-8">
-            {submitted ? (
-              <div className="text-center py-8">
-                <div className="w-16 h-16 bg-gh-green/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <CheckCircle className="h-8 w-8 text-gh-green" />
-                </div>
-                <h3 className="font-mono font-bold text-xl text-gh-text mb-2">
-                  Message Sent!
-                </h3>
-                <p className="text-gh-text-secondary">
-                  Thank you for reaching out. I'll get back to you within 24 hours.
-                </p>
-                <Button
-                  onClick={() => setSubmitted(false)}
-                  variant="outline"
-                  className="mt-6 border-gh-border text-gh-text hover:bg-gh-bg-secondary font-mono"
-                >
-                  Send Another
-                </Button>
+          {/* Right: Modern Secure Form */}
+          <div className="lg:col-span-7">
+            <div className="relative h-full p-12 lg:p-16 bg-prof-navy rounded-[48px] border border-prof-navy shadow-[0_32px_64px_-16px_rgba(15,23,42,0.4)] overflow-hidden">
+              <div className="absolute inset-0 blueprint-grid opacity-10" />
+
+              <div className="relative h-full flex flex-col justify-between">
+                {formStatus === 'success' ? (
+                  <div className="h-full flex flex-col items-center justify-center text-center space-y-8 animate-in zoom-in duration-500">
+                    <div className="w-24 h-24 bg-emerald-500/20 rounded-full flex items-center justify-center border border-emerald-500/20">
+                      <CheckCircle className="text-emerald-500 h-12 w-12" />
+                    </div>
+                    <div className="space-y-4">
+                      <h3 className="text-4xl font-black text-white">Transmission Received</h3>
+                      <p className="text-white/60 text-lg max-w-sm">
+                        Request successfully decrypted and stored. I will respond within 12 standard business hours.
+                      </p>
+                    </div>
+                    <Button
+                      variant="outline"
+                      className="border-white/20 text-white hover:bg-white/5 h-14 px-10 rounded-2xl font-black uppercase tracking-widest text-xs"
+                      onClick={() => setFormStatus('idle')}
+                    >
+                      Return to Terminal
+                    </Button>
+                  </div>
+                ) : (
+                  <form onSubmit={handleSubmit} className="space-y-8">
+                    <div className="flex items-center gap-4 mb-8">
+                      <div className="w-2 h-2 rounded-full bg-prof-blue animate-pulse" />
+                      <span className="text-[10px] text-white/40 font-black uppercase tracking-[0.3em] font-mono">Secure_Submission_Protocol_v4.2</span>
+                    </div>
+
+                    <div className="grid md:grid-cols-2 gap-8">
+                      <div className="space-y-3">
+                        <Label className="text-white font-black text-[10px] uppercase tracking-widest ml-1">Identity Manifest</Label>
+                        <Input
+                          placeholder="Full Name / Organization"
+                          className="h-16 bg-white/5 border-white/10 text-white placeholder:text-white/20 rounded-2xl px-6 focus:ring-prof-blue focus:border-prof-blue transition-all"
+                          required
+                        />
+                      </div>
+                      <div className="space-y-3">
+                        <Label className="text-white font-black text-[10px] uppercase tracking-widest ml-1">Communication Endpoint</Label>
+                        <Input
+                          type="email"
+                          placeholder="architect@domain.com"
+                          className="h-16 bg-white/5 border-white/10 text-white placeholder:text-white/20 rounded-2xl px-6 focus:ring-prof-blue focus:border-prof-blue transition-all"
+                          required
+                        />
+                      </div>
+                    </div>
+
+                    <div className="space-y-3">
+                      <Label className="text-white font-black text-[10px] uppercase tracking-widest ml-1">Project Specification</Label>
+                      <Textarea
+                        placeholder="Briefly describe your architectural requirements or consultation objective..."
+                        className="min-h-[220px] bg-white/5 border-white/10 text-white placeholder:text-white/20 rounded-3xl p-8 focus:ring-prof-blue focus:border-prof-blue transition-all text-lg resize-none"
+                        required
+                      />
+                    </div>
+
+                    <div className="pt-4 flex flex-col md:flex-row items-center gap-8">
+                      <Button
+                        type="submit"
+                        disabled={formStatus === 'submitting'}
+                        className="w-full md:w-auto h-18 px-12 bg-prof-blue text-white rounded-[24px] font-black shadow-2xl shadow-prof-blue/20 hover:scale-[1.02] transition-all text-xl disabled:opacity-50"
+                      >
+                        {formStatus === 'submitting' ? 'Orchestrating...' : 'Submit Architecture Request'}
+                        <Send className="ml-3 h-5 w-5" />
+                      </Button>
+
+                      <div className="flex items-center gap-4 text-white/30">
+                        <MessageCircle className="h-5 w-5" />
+                        <span className="text-[10px] font-black uppercase tracking-widest font-mono">E2E Encrypted Path</span>
+                      </div>
+                    </div>
+                  </form>
+                )}
               </div>
-            ) : (
-              <form onSubmit={handleSubmit} className="space-y-4">
-                <div className="grid sm:grid-cols-2 gap-4">
-                  <div className="space-y-2">
-                    <Label htmlFor="name" className="text-gh-text font-mono text-sm">
-                      name
-                    </Label>
-                    <Input
-                      id="name"
-                      name="name"
-                      value={formData.name}
-                      onChange={handleChange}
-                      placeholder="Your name"
-                      required
-                      className="bg-gh-bg-tertiary border-gh-border text-gh-text placeholder:text-gh-text-tertiary focus:border-gh-blue font-mono"
-                    />
-                  </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="email" className="text-gh-text font-mono text-sm">
-                      email
-                    </Label>
-                    <Input
-                      id="email"
-                      name="email"
-                      type="email"
-                      value={formData.email}
-                      onChange={handleChange}
-                      placeholder="you@company.com"
-                      required
-                      className="bg-gh-bg-tertiary border-gh-border text-gh-text placeholder:text-gh-text-tertiary focus:border-gh-blue font-mono"
-                    />
-                  </div>
-                </div>
-
-                <div className="space-y-2">
-                  <Label htmlFor="company" className="text-gh-text font-mono text-sm">
-                    company
-                  </Label>
-                  <Input
-                    id="company"
-                    name="company"
-                    value={formData.company}
-                    onChange={handleChange}
-                    placeholder="Your company name"
-                    className="bg-gh-bg-tertiary border-gh-border text-gh-text placeholder:text-gh-text-tertiary focus:border-gh-blue font-mono"
-                  />
-                </div>
-
-                <div className="space-y-2">
-                  <Label htmlFor="message" className="text-gh-text font-mono text-sm">
-                    message
-                  </Label>
-                  <Textarea
-                    id="message"
-                    name="message"
-                    value={formData.message}
-                    onChange={handleChange}
-                    placeholder="Tell me about your project, challenges, and goals..."
-                    required
-                    rows={4}
-                    className="bg-gh-bg-tertiary border-gh-border text-gh-text placeholder:text-gh-text-tertiary focus:border-gh-blue font-mono resize-none"
-                  />
-                </div>
-
-                <Button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className="w-full bg-gh-blue text-gh-bg hover:bg-gh-blue/90 font-mono group"
-                >
-                  {isSubmitting ? (
-                    'sending...'
-                  ) : (
-                    <>
-                      send_message()
-                      <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-                    </>
-                  )}
-                </Button>
-              </form>
-            )}
+            </div>
           </div>
+
         </div>
       </div>
     </section>
