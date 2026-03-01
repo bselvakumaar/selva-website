@@ -61,7 +61,7 @@
     rel="stylesheet" />
   <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
   <script>
-    (function () { emailjs.init({ publicKey: '%VITE_EMAILJS_PUBLIC_KEY%' }); })();
+    (function () { emailjs.init({ publicKey: 'Tb71WF8hKW-_-wAXA' }); })();
   </script>
   <style>
     *,
@@ -2798,8 +2798,8 @@
 
       try {
         await emailjs.send(
-          '%VITE_EMAILJS_SERVICE_ID%',
-          '%VITE_EMAILJS_TEMPLATE_ID%',
+          'service_p13roo7',
+          'template_fpgvy76',
           { from_name: name, email: email, organization: org, engagement_type: type, message: message }
         );
         btn.textContent = '✓ Message Sent — I will be in touch shortly';
