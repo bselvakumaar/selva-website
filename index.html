@@ -1945,9 +1945,41 @@
 
     .form-submit svg {
       width: 14px;
-      height: 14px;
-      stroke: currentColor;
+      color: var(--platinum);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      transition: all 0.3s;
+    }
+
+    .insight-link svg {
+      width: 16px;
+      height: 16px;
+      stroke: var(--gold);
+      stroke-width: 2.5;
       fill: none;
+      transition: transform 0.3s;
+    }
+
+    .insight-card:hover .insight-link {
+      color: var(--gold);
+    }
+
+    .insight-card:hover .insight-link svg {
+      transform: translateX(6px);
+    }
+
+    @media (max-width: 1024px) {
+      .insights-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .insights-grid {
+        grid-template-columns: 1fr;
+      }
     }
 
     /* ======= FOOTER ======= */
@@ -2103,8 +2135,7 @@
       <a href="#platforms">Systems</a>
       <a href="#architecture">Blueprint</a>
       <a href="#case-studies">Impact</a>
-      <a href="#expertise">Expertise</a>
-      <a href="#timeline">Career</a>
+      <a href="#insights">Insights</a>
       <a href="#contact">Engage</a>
     </div>
     <a href="#contact" class="nav-cta">Request Consultation</a>
@@ -2131,9 +2162,8 @@
         Intelligence
       </h1>
       <p class="hero-subtitle">
-        Enterprise AI, Cloud, and Digital Transformation Leader with 20+ years of experience delivering large-scale cloud
-        modernization, AI-driven platforms, and enterprise IT transformation programs across Healthcare, BFSI, and
-        Enterprise SaaS.
+        Enterprise AI Architect with 20+ years delivering large-scale cloud transformation, GenAI platforms, and
+        scalable enterprise systems across Healthcare, BFSI, and Manufacturing.
       </p>
       <div class="hero-actions">
         <a href="#case-studies" class="btn-primary">
@@ -2351,45 +2381,45 @@
     </div>
   </section>
 
-  <!-- ARCHITECTURE (Dynamic Network Ecosystem) -->
+  <!-- ARCHITECTURE (AI Architecture Showcase) -->
   <section id="architecture">
     <div class="section-inner">
       <div class="section-eyebrow reveal">
         <div class="section-eyebrow-line"></div>
-        <span class="section-eyebrow-text">Enterprise Engineering</span>
+        <span class="section-eyebrow-text">Strategic Blueprinting</span>
       </div>
-      <h2 class="section-title reveal reveal-delay-1">Dynamic <em>Network Ecosystems</em></h2>
+      <h2 class="section-title reveal reveal-delay-1">AI Architecture <em>Showcase</em></h2>
       <div class="arch-layout" style="margin-top:64px">
         <div>
           <p class="section-lead reveal" style="margin-bottom:40px">Visualizing our platform engineering topologies — from intelligent orchestration to global distributed systems.</p>
           <div class="arch-stack reveal reveal-delay-1">
             <div class="arch-layer-indicator" id="archIndicator"></div>
             <div class="arch-layer active" onclick="switchArchViz(1)">
-              <div class="arch-layer-badge">AI</div>
+              <div class="arch-layer-badge">RG</div>
               <div class="arch-layer-info">
-                <div class="arch-layer-name">AI Platform Engine</div>
-                <div class="arch-layer-desc">Distributed intelligence hub for autonomous agents and RAG pipelines.</div>
+                <div class="arch-layer-name">RAG Pipeline Mesh</div>
+                <div class="arch-layer-desc">Vectorized knowledge ingestion with GraphRAG semantic retrieval.</div>
               </div>
             </div>
             <div class="arch-layer" onclick="switchArchViz(2)">
-              <div class="arch-layer-badge">PF</div>
+              <div class="arch-layer-badge">AG</div>
               <div class="arch-layer-info">
-                <div class="arch-layer-name">Platform Evolution</div>
-                <div class="arch-layer-desc">Event-driven microservices architecture replacing monolithic systems.</div>
+                <div class="arch-layer-name">Agentic Orchestration</div>
+                <div class="arch-layer-desc">Autonomous multi-agent workflows using LangGraph and CrewAI.</div>
               </div>
             </div>
             <div class="arch-layer" onclick="switchArchViz(3)">
-              <div class="arch-layer-badge">K8</div>
+              <div class="arch-layer-badge">CL</div>
               <div class="arch-layer-info">
-                <div class="arch-layer-name">Global Kubernetes</div>
-                <div class="arch-layer-desc">Highly available container orchestration across multi-cloud regions.</div>
+                <div class="arch-layer-name">Cloud Architecture</div>
+                <div class="arch-layer-desc">Multi-region Kubernetes mesh for sub-second AI inference scaling.</div>
               </div>
             </div>
             <div class="arch-layer" onclick="switchArchViz(4)">
-              <div class="arch-layer-badge">DX</div>
+              <div class="arch-layer-badge">DF</div>
               <div class="arch-layer-info">
-                <div class="arch-layer-name">Enterprise DevOps</div>
-                <div class="arch-layer-desc">Zero-touch CI/CD pipeline with continuous security and observability.</div>
+                <div class="arch-layer-name">Enterprise Data Flow</div>
+                <div class="arch-layer-desc">Event-driven integration hub bridging legacy ERPs to AI sinks.</div>
               </div>
             </div>
           </div>
@@ -2518,16 +2548,14 @@
         <div class="case-study reveal reveal-delay-2">
           <div class="case-meta">
             <div class="case-num">03</div>
-            <div class="case-sector">Retail · Conversational AI</div>
-            <div class="case-client">StoreAI — Retail Intelligence Labs</div>
-            <div class="case-period">2020 — 2023</div>
+            <div class="case-sector">Enterprise · Automation Hub</div>
+            <div class="case-client">Enterprise Automation with Make + Supabase</div>
+            <div class="case-period">2023 — 2024</div>
           </div>
           <div class="case-body">
-            <p class="case-challenge">"Building conversational inventory intelligence for 10,000+ SKUs with real-time
+            <p class="case-challenge">"Scaling inventory intelligence for 10,000+ SKUs with real-time
               procurement automation and zero manual intervention."</p>
-            <p class="case-solution">Designed the proprietary Hyperion Architecture for StoreAI with deep conversational
-              AI integration. Unified disparate retail data sources into a high-performance RAG pipeline for instant
-              stock intelligence. Automated procurement eliminated all manual reorder processes.</p>
+            <p class="case-solution">Designed a high-throughput automation hub linking fragmented retail silos via Make.com and Supabase. Unified data streams into a high-performance RAG pipeline for instant stock intelligence and predictive reordering.</p>
             <div class="case-metrics">
               <div class="case-metric">
                 <div class="case-metric-val">10K+</div>
@@ -2538,12 +2566,12 @@
                 <div class="case-metric-label">Manual Orders</div>
               </div>
               <div class="case-metric">
-                <div class="case-metric-val">100%</div>
-                <div class="case-metric-label">Automation Rate</div>
+                <div class="case-metric-val">Make</div>
+                <div class="case-metric-label">+ Supabase</div>
               </div>
               <div class="case-metric">
                 <div class="case-metric-val">Real-time</div>
-                <div class="case-metric-label">Stock Intelligence</div>
+                <div class="case-metric-label">Stock IQ</div>
               </div>
             </div>
           </div>
@@ -2687,6 +2715,53 @@
           </div>
         </div>
 
+      </div>
+    </div>
+  </section>
+
+  <!-- STRATEGIC INSIGHTS (Thought Leadership) -->
+  <section id="insights">
+    <div class="section-inner">
+      <div class="section-eyebrow reveal">
+        <div class="section-eyebrow-line"></div>
+        <span class="section-eyebrow-text">Thought Leadership</span>
+      </div>
+      <h2 class="section-title reveal reveal-delay-1">Strategic <em>Insights</em></h2>
+      
+      <div class="insights-grid">
+        <!-- Insight 1 -->
+        <div class="insight-card reveal">
+          <span class="insight-tag">Agentic AI</span>
+          <h4 class="insight-title">The Post-SaaS Frontier: Engineering Autonomous Workflows</h4>
+          <p class="insight-excerpt">Why the next decade of enterprise software isn't about better UIs, but about agentic meshes that reason, adapt, and execute across siloes.</p>
+          <a href="https://linkedin.com/in/selvakumar-balakrishnan-8305641" target="_blank" class="insight-link">
+            Read Discussion on LinkedIn
+            <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+          </a>
+        </div>
+
+        <!-- Insight 2 -->
+        <div class="insight-card reveal reveal-delay-1">
+          <span class="insight-tag">Enterprise Modernization</span>
+          <h4 class="insight-title">Legacy Gravity & the Cloud Portability Paradox</h4>
+          <h4 class="insight-title" style="display:none">Legacy Gravity & the Cloud Portability Paradox</h4>
+          <p class="insight-excerpt">Strategic patterns for modernizing mission-critical systems in Healthcare and BFSI without compromising day-zero operational stability.</p>
+          <a href="https://linkedin.com/in/selvakumar-balakrishnan-8305641" target="_blank" class="insight-link">
+            View Strategic Insights
+            <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+          </a>
+        </div>
+
+        <!-- Insight 3 -->
+        <div class="insight-card reveal reveal-delay-2">
+          <span class="insight-tag">Knowledge Intelligence</span>
+          <h4 class="insight-title">RAG Mesh: Beyond Simple Vector Search</h4>
+          <p class="insight-excerpt">How semantic knowledge meshes and GraphRAG architectures are solving the hallucination problem for production-grade enterprise LLMs.</p>
+          <a href="https://linkedin.com/in/selvakumar-balakrishnan-8305641" target="_blank" class="insight-link">
+            Explore Documentation
+            <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+          </a>
+        </div>
       </div>
     </div>
   </section>
@@ -2883,7 +2958,7 @@
               </div>
               <div class="contact-channel-arrow" id="phone-reveal-text">Reveal</div>
             </div>
-            <a href="https://linkedin.com/in/selvakumar-" target="_blank" class="contact-channel reveal reveal-delay-2">
+            <a href="https://linkedin.com/in/selvakumar-balakrishnan-8305641" target="_blank" class="contact-channel reveal reveal-delay-2">
               <div class="contact-channel-icon">
                 <svg viewBox="0 0 24 24">
                   <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
@@ -3019,36 +3094,36 @@
     // Architecture Walkthrough JS
     const ecosystems = {
       1: {
-        label: "AI Platform Engine",
-        desc: "Autonomous agents coordination and vectorized knowledge mesh.",
-        title: "engine.orchestrator.v2",
-        nodes: [{ x: 50, y: 150, icon: "C" }, { x: 150, y: 80, icon: "A" }, { x: 150, y: 220, icon: "B" }, { x: 250, y: 150, icon: "D" }],
+        label: "RAG Pipeline Mesh",
+        desc: "Vectorized knowledge ingestion with GraphRAG semantic retrieval.",
+        title: "rag.mesh.pipeline.v2",
+        nodes: [{ x: 50, y: 150, icon: "In" }, { x: 150, y: 80, icon: "V" }, { x: 150, y: 220, icon: "G" }, { x: 250, y: 150, icon: "Out" }],
         paths: ["M 50 150 Q 150 50 150 80", "M 50 150 Q 150 250 150 220", "M 150 80 Q 250 80 250 150", "M 150 220 Q 250 220 250 150"],
-        code: `// Intelligent Orchestration\nconst brain = {\n  agents: ["Analyst", "Researcher", "Executor"],\n  memory: "PostgreSQL-Vector",\n  logic: langgraph()\n}`
+        code: `// RAG Mesh Configuration\nconst rag = {\n  vectorDB: "Pinecone / Milvus",\n  graph: "Neo4j Semantic Layer",\n  retriever: "Ensemble-Hybrid"\n}`
       },
       2: {
-        label: "Platform Evolution",
-        desc: "Event-driven microservices architecture replacing monolithic systems.",
-        title: "platform.mesh.config",
-        nodes: [{ x: 50, y: 150, icon: "L" }, { x: 150, y: 150, icon: "G" }, { x: 250, y: 80, icon: "M1" }, { x: 250, y: 220, icon: "M2" }, { x: 350, y: 150, icon: "E" }],
+        label: "Agentic Orchestration",
+        desc: "Autonomous multi-agent workflows using LangGraph and CrewAI.",
+        title: "agent.orchestrator.yml",
+        nodes: [{ x: 50, y: 150, icon: "L" }, { x: 150, y: 150, icon: "G" }, { x: 250, y: 80, icon: "A1" }, { x: 250, y: 220, icon: "A2" }, { x: 350, y: 150, icon: "E" }],
         paths: ["M 50 150 H 150", "M 150 150 Q 250 50 250 80", "M 150 150 Q 250 250 250 220", "M 250 80 Q 350 80 350 150", "M 250 220 Q 350 220 350 150"],
-        code: `// Event Mesh\nconst platform = {\n  bus: "Kafka / Kinesis",\n  service: "Istio-Mesh",\n  pattern: "Strangler-Fig"\n}`
+        code: `// Agentic Workflow\nconst workflow = {\n  brain: "LangGraph / CrewAI",\n  memory: "Redis-Persistent",\n  tools: ["Python", "Search", "ERP"]\n}`
       },
       3: {
-        label: "Global Kubernetes",
-        desc: "Highly available container orchestration across multi-cloud regions.",
-        title: "k8s.cluster.global",
-        nodes: [{ x: 50, y: 150, icon: "LB" }, { x: 200, y: 100, icon: "US" }, { x: 200, y: 200, icon: "EU" }, { x: 350, y: 150, icon: "DB" }],
+        label: "Cloud Architecture",
+        desc: "Multi-region Kubernetes mesh for sub-second AI inference scaling.",
+        title: "cloud.infra.provision.tf",
+        nodes: [{ x: 50, y: 150, icon: "LB" }, { x: 200, y: 100, icon: "K8s" }, { x: 200, y: 200, icon: "S3" }, { x: 350, y: 150, icon: "CDN" }],
         paths: ["M 50 150 Q 125 100 200 100", "M 50 150 Q 125 200 200 200", "M 200 100 Q 275 100 350 150", "M 200 200 Q 275 200 350 150"],
-        code: `// Multi-Region Cluster\nconst k8s = {\n  ingress: "Global LoadBalancer",\n  regions: ["us-east-1", "eu-west-1"],\n  replication: "Synchronous"\n}`
+        code: `// Infrastructure as Code\nconst infra = {\n  provider: "AWS / Azure / GCP",\n  compute: "EKS Managed Node Groups",\n  scaling: "KEDA Event-driven"\n}`
       },
       4: {
-        label: "Enterprise DevOps",
-        desc: "Zero-touch CI/CD pipeline with continuous security and observability.",
-        title: "ci.cd.pipeline.yml",
-        nodes: [{ x: 50, y: 150, icon: "Git" }, { x: 150, y: 150, icon: "CI" }, { x: 250, y: 150, icon: "SEC" }, { x: 350, y: 150, icon: "PD" }],
+        label: "Enterprise Data Flow",
+        desc: "Event-driven integration hub bridging legacy ERPs to AI sinks.",
+        title: "data.flow.bridge.py",
+        nodes: [{ x: 50, y: 150, icon: "ERP" }, { x: 150, y: 150, icon: "ESB" }, { x: 250, y: 150, icon: "Hub" }, { x: 350, y: 150, icon: "AI" }],
         paths: ["M 50 150 H 150", "M 150 150 H 250", "M 250 150 H 350"],
-        code: `// DevSecOps Pipeline\nconst pipeline = {\n  source: "Github GitOps",\n  scanner: "Snyk / Sonar",\n  deploy: "ArgoCD / Helm"\n}`
+        code: `// Data Bridge Pattern\nconst bridge = {\n  source: "Legacy SAP / Oracle",\n  transform: "Real-time Kafka / Pulsar",\n  target: "Vector Knowledge Mesh"\n}`
       }
     };
 
