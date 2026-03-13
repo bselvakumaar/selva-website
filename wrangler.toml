@@ -1,4 +1,4 @@
-name = "site"
+name = "selva-website"
 main = "src/worker.js"
 compatibility_date = "2026-02-22"
 
