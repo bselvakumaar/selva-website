@@ -77,9 +77,9 @@ export default function Hero() {
             </div>
 
             <div className="space-y-8">
-              <h1 className="text-6xl lg:text-8xl font-black text-prof-navy leading-[1.02] tracking-tight">
+              <h1 className="text-4xl sm:text-6xl lg:text-8xl font-black text-prof-navy leading-[1.02] tracking-tight">
                 Engineering <br />
-                <span className="text-prof-blue underline decoration-8 decoration-prof-blue/10 underline-offset-[12px]">Intelligence</span>
+                <span className="text-prof-blue underline decoration-4 sm:decoration-8 decoration-prof-blue/10 underline-offset-[8px] sm:underline-offset-[12px]">Intelligence</span>
               </h1>
               <p className="text-xl text-prof-text-dim max-w-xl leading-relaxed font-medium">
                 Designing high-compliance <span className="text-prof-navy font-bold">GenAI Ecosystems</span> and

@@ -1,16 +1,16 @@
 import { useState, useEffect } from 'react';
-import { Menu, X, Terminal } from 'lucide-react';
+import { Menu, X, Terminal, Compass, Cpu, Layers, Briefcase, MessageSquare, FileText } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { ThemeToggle } from '@/components/ThemeToggle';
 
 const navLinks = [
-  { label: 'Platforms', href: '#platforms' },
-  { label: 'Architecture', href: '#architecture' },
-  { label: 'RAG Pipeline', href: '#rag-pipeline' },
-  { label: 'Case Studies', href: '#case-studies' },
-  { label: 'About', href: '#about' },
-  { label: 'Resume', href: '#resume' },
-  { label: 'Contact', href: '#contact' },
+  { label: 'Platforms', href: '#platforms', icon: Cpu },
+  { label: 'Architecture', href: '#architecture', icon: Layers },
+  { label: 'RAG Pipeline', href: '#rag-pipeline', icon: Terminal },
+  { label: 'Case Studies', href: '#case-studies', icon: Briefcase },
+  { label: 'About', href: '#about', icon: Compass },
+  { label: 'Resume', href: '#resume', icon: FileText },
+  { label: 'Contact', href: '#contact', icon: MessageSquare },
 ];
 
 export default function Navigation() {
@@ -50,12 +50,15 @@ export default function Navigation() {
               href="#"
               className="flex items-center gap-4 group"
             >
-              <div className="w-12 h-12 bg-prof-navy rounded-2xl flex items-center justify-center shadow-2xl shadow-prof-navy/20 group-hover:scale-110 transition-transform duration-700">
-                <Terminal className="h-6 w-6 text-white" />
+              <div className="w-12 h-12 flex items-center justify-center group-hover:scale-110 transition-transform duration-700">
+                <svg viewBox="0 0 100 100" className="h-full w-full">
+                  <polygon points="50 3, 93 25, 93 75, 50 97, 7 75, 7 25" fill="#080A0E" stroke="#C9A96E" stroke-width="4"/>
+                  <text x="50" y="65" font-family="Georgia, serif" font-size="55" fill="#C9A96E" text-anchor="middle" font-weight="600">S</text>
+                </svg>
               </div>
-              <div className="flex flex-col">
-                <span className="font-black text-prof-navy text-xl leading-none tracking-tight">Selvakumar</span>
-                <span className="text-[10px] text-prof-blue font-black tracking-[0.3em] uppercase mt-1">AI Architect</span>
+              <div className="flex flex-col max-w-[150px] sm:max-w-none">
+                <span className="font-black text-prof-navy text-lg sm:text-xl leading-none tracking-tight">Selvakumar</span>
+                <span className="text-[9px] sm:text-[10px] text-prof-blue font-black tracking-[0.2em] sm:tracking-[0.3em] uppercase mt-1 leading-tight">AI Architect</span>
               </div>
             </a>
 
@@ -110,12 +113,12 @@ export default function Navigation() {
         <div className="absolute inset-0 blueprint-grid opacity-10 pointer-events-none" />
 
         <div className="relative h-full flex flex-col p-12">
-          <div className="flex justify-between items-center mb-20">
-            <div className="flex items-center gap-4">
-              <div className="w-12 h-12 bg-white rounded-2xl flex items-center justify-center">
-                <Terminal className="h-6 w-6 text-prof-navy" />
-              </div>
-              <span className="font-black text-white text-2xl tracking-tight">Selvakumar</span>
+          <div className="flex justify-between items-start mb-16">
+            <div className="flex flex-col gap-2">
+              <span className="font-black text-white text-2xl tracking-tight leading-none">Selvakumar Balakrishnan</span>
+              <span className="text-[7px] sm:text-[10px] text-prof-blue font-black tracking-[0.15em] sm:tracking-[0.2em] uppercase leading-none w-full opacity-80 whitespace-nowrap">
+                Enterprise AI, Cloud & Digital Transformation Leader
+              </span>
             </div>
             <button
               onClick={() => setIsMobileMenuOpen(false)}
@@ -132,12 +135,19 @@ export default function Navigation() {
                 onClick={() => scrollToSection(link.href)}
                 className="group flex flex-col items-start"
               >
-                <span className="text-[11px] text-prof-blue font-black tracking-[0.4em] uppercase mb-1 opacity-60">
-                  {String(index + 1).padStart(2, '0')}
-                </span>
-                <span className="text-5xl font-black text-white hover:text-prof-blue transition-all duration-500 tracking-tighter">
-                  {link.label}
-                </span>
+                <div className="flex items-center gap-6 w-full p-6 bg-white/5 border border-white/5 rounded-2xl hover:bg-white/10 transition-colors">
+                  <div className="w-12 h-12 bg-prof-blue/20 rounded-xl flex items-center justify-center text-prof-blue">
+                    <link.icon size={24} />
+                  </div>
+                  <div className="flex flex-col items-start">
+                    <span className="text-[10px] text-prof-blue font-black tracking-[0.2em] uppercase mb-0.5 opacity-60">
+                      {String(index + 1).padStart(2, '0')}
+                    </span>
+                    <span className="text-lg font-black text-white hover:text-prof-blue transition-all duration-500 tracking-tight uppercase">
+                      {link.label}
+                    </span>
+                  </div>
+                </div>
               </button>
             ))}
           </div>
@@ -145,7 +155,7 @@ export default function Navigation() {
           <div className="mt-auto">
             <Button
               onClick={() => scrollToSection('#contact')}
-              className="w-full bg-prof-blue text-white font-black h-20 rounded-3xl text-2xl shadow-3xl shadow-prof-blue/20"
+              className="w-full bg-prof-blue text-white font-black h-16 rounded-2xl text-lg shadow-xl shadow-prof-blue/20"
             >
               Let's Collaborate
             </Button>

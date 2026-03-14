@@ -221,11 +221,8 @@
     }
 
     .nav-logo-mark svg {
-      width: 20px;
-      height: 20px;
-      stroke: var(--gold);
-      fill: none;
-      stroke-width: 1.5;
+      width: 24px;
+      height: 24px;
     }
 
     .nav-logo-text {
@@ -247,7 +244,8 @@
       color: var(--gold);
       letter-spacing: 0.15em;
       text-transform: uppercase;
-      white-space: nowrap;
+      white-space: normal;
+      max-width: 200px;
     }
 
     .nav-links {
@@ -268,6 +266,10 @@
 
     .nav-links a:hover {
       color: var(--gold);
+    }
+
+    .nav-links a svg {
+      display: none;
     }
 
     .nav-cta {
@@ -349,21 +351,39 @@
 
       .nav-mobile-header {
         display: none;
+        flex-direction: column;
+        gap: 8px;
+        margin-bottom: 40px;
+        width: 100%;
+      }
+
+      .nav-mobile-header .m-name {
+        font-family: var(--font-sans);
+        font-size: 20px;
+        font-weight: 800;
+        color: var(--white);
+        letter-spacing: -0.02em;
+        line-height: 1.1;
+      }
+
+      .nav-mobile-header .m-role {
         font-family: var(--font-mono);
-        font-size: 9px;
+        font-size: clamp(6px, 1.8vw, 8px);
         font-weight: 600;
         color: var(--gold);
-        letter-spacing: 0.4em;
+        letter-spacing: 0.12em;
         text-transform: uppercase;
-        margin-bottom: 20px;
-        opacity: 0.6;
+        width: 100%;
+        opacity: 0.8;
+        line-height: 1;
+        white-space: nowrap;
       }
 
       nav.nav-mobile-active .nav-mobile-header {
-        display: block;
-        opacity: 0.6;
-        transform: translateY(10px);
-        animation: slideIn 0.5s ease 0.05s forwards;
+        display: flex;
+        opacity: 1;
+        transform: translateY(0);
+        animation: slideIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
       }
 
       nav.nav-mobile-active .nav-links {
@@ -376,23 +396,42 @@
         justify-content: center;
         align-items: center;
         padding: 40px;
-        gap: 28px;
+        gap: 24px;
         z-index: 1001;
         opacity: 1;
         transition: opacity 0.5s ease;
+        overflow-y: auto;
       }
 
       nav.nav-mobile-active .nav-links a {
         font-family: var(--font-sans);
-        font-size: 22px;
-        font-weight: 400;
-        letter-spacing: 0.01em;
+        font-size: 14px;
+        font-weight: 600;
+        letter-spacing: 0.1em;
         color: var(--white);
-        text-transform: none;
+        text-transform: uppercase;
         opacity: 0;
         transform: translateY(20px);
         animation: slideIn 0.5s ease forwards;
         transition: color 0.3s ease;
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        width: 100%;
+        padding: 12px 20px;
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        border-radius: 12px;
+      }
+
+      nav.nav-mobile-active .nav-links a svg {
+        display: block;
+        width: 18px;
+        height: 18px;
+        stroke: var(--gold);
+        fill: none;
+        stroke-width: 1.5;
+        opacity: 0.8;
       }
 
       nav.nav-mobile-active .nav-links a:nth-child(2) { animation-delay: 0.1s; }
@@ -2117,11 +2156,9 @@
   <nav id="nav">
     <a href="#" class="nav-logo">
       <div class="nav-logo-mark">
-        <svg viewBox="0 0 24 24">
-          <polygon points="12 2 22 8.5 22 15.5 12 22 2 15.5 2 8.5" />
-          <line x1="12" y1="2" x2="12" y2="22" />
-          <line x1="2" y1="8.5" x2="22" y2="8.5" />
-          <line x1="2" y1="15.5" x2="22" y2="15.5" />
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <polygon points="50 3, 93 25, 93 75, 50 97, 7 75, 7 25" fill="#080A0E" stroke="#C9A96E" stroke-width="4"/>
+          <text x="50" y="65" font-family="Georgia, serif" font-size="55" fill="#C9A96E" text-anchor="middle" font-weight="600">S</text>
         </svg>
       </div>
       <div class="nav-logo-text">
@@ -2130,13 +2167,16 @@
       </div>
     </a>
     <div class="nav-links">
-      <div class="nav-mobile-header">MENU</div>
-      <a href="#about">Philosophy</a>
-      <a href="#platforms">Systems</a>
-      <a href="#architecture">Blueprint</a>
-      <a href="#case-studies">Impact</a>
-      <a href="#insights">Insights</a>
-      <a href="#contact">Engage</a>
+      <div class="nav-mobile-header">
+        <span class="m-name">Selvakumar Balakrishnan</span>
+        <span class="m-role">Enterprise AI, Cloud & Digital Transformation Leader</span>
+      </div>
+      <a href="#about"><svg viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg> Philosophy</a>
+      <a href="#platforms"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><line x1="9" y1="1" x2="9" y2="4"/><line x1="15" y1="1" x2="15" y2="4"/><line x1="9" y1="20" x2="9" y2="23"/><line x1="15" y1="20" x2="15" y2="23"/><line x1="20" y1="9" x2="23" y2="9"/><line x1="20" y1="15" x2="23" y2="15"/><line x1="1" y1="9" x2="4" y2="9"/><line x1="1" y1="15" x2="4" y2="15"/></svg> Systems</a>
+      <a href="#architecture"><svg viewBox="0 0 24 24"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg> Blueprint</a>
+      <a href="#case-studies"><svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg> Impact</a>
+      <a href="#insights"><svg viewBox="0 0 24 24"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/><path d="M5 3v4"/><path d="M19 17v4"/><path d="M3 5h4"/><path d="M17 19h4"/></svg> Insights</a>
+      <a href="#contact"><svg viewBox="0 0 24 24"><path d="m22 2-10 10"/><path d="m22 2-7 20-3-9-9-3 20-7Z"/></svg> Engage</a>
     </div>
     <a href="#contact" class="nav-cta">Request Consultation</a>
     <button class="nav-mobile-toggle" onclick="toggleMobileMenu()">
